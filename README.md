@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://ahnupsingh.github.io/crud-app/">
-    Seriea Frontend - React CRUD App for interns, trainee, beginners, freshers
+      React CRUD App for interns, trainee, beginners, freshers
   </a>
 </h1>
 
@@ -55,4 +55,4 @@ and then you can open http://localhost:3000 to view it in the browser.
 
 ## Credits
 
-Seriea Frontend is built and maintained by [Anup Kumar Singh](https://ahnupsingh.github.io) for Seriea for training purposes.
+React crud is built and maintained by [Anup Kumar Singh](https://ahnupsingh.github.io) for training purposes.
