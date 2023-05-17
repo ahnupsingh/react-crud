@@ -4,23 +4,23 @@ import { BrowserRouter } from "react-router-dom";
 import Login from '../Login';
 import Dashboard from '../Dashboard';
 import Table from '../common/Table';
+import { useNavigate } from 'react-router-dom';
 
 const App = () => {
+  const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
-    setIsAuthenticated(localStorage.getItem('access_token') !== undefined);
+    const isAuth = localStorage.getItem('access_token') !== undefined;
+    setIsAuthenticated(isAuth);
+    if(!isAuth){
+      navigate('/login');
+    }
   }, []);
 
   return (
     <>
-      {isAuthenticated ? (
-        <>
-        <Dashboard setIsAuthenticated={setIsAuthenticated} />
-        </>
-      ) : (
-        <Login setIsAuthenticated={setIsAuthenticated} />
-      )}
+      <Dashboard setIsAuthenticated={setIsAuthenticated} />
     </>
   );
 };

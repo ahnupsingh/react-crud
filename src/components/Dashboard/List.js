@@ -55,42 +55,6 @@ const List = ({ employees, handleEdit, handleDelete, setIsAdding }) => {
             onDelete={handleDelete}
             onIsAdding={setIsAdding}
       />
-      <table className="striped-table">
-        <tbody>
-          {employees.length > 0 ? (
-            employees.map((employee, i) => (
-              <tr key={i}>
-                <td>{i + 1}</td>
-                <td>{employee.firstName}</td>
-                <td>{employee.lastName}</td>
-                <td>{employee.email}</td>
-                <td>{formatter.format(employee.salary)}</td>
-                <td>{employee.createdAt} </td>
-                <td className="text-right">
-                  <button
-                    onClick={() => handleEdit(employee[pKey])}
-                    className="btn btn-primary"
-                  >
-                    Edit
-                  </button>
-                </td>
-                <td className="text-left">
-                  <button
-                    onClick={() => handleDelete(employee[pKey])}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={7}>No Employees</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
     </div>
   );
 };

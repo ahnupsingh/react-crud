@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LoginForm from '../common/Form';
+import LoginForm from '../common/ReactForm';
 
 const Login = ({ setIsAuthenticated }) => {
   return (
