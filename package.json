@@ -2,7 +2,7 @@
   "name": "crud-app",
   "version": "3.3.0",
   "private": true,
-  "homepage": "https://ahnupsingh.github.io/seriea-frontend/",
+  "homepage": "https://ahnupsingh.github.io",
   "author": {
     "name": "Anup Kumar Singh",
     "url": "https://ahnupsingh.github.io"
@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
+    "react-table": "^7.8.0",
     "sweetalert2": "^11.4.18"
   },
   "scripts": {

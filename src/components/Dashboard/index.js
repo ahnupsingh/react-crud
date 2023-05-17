@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 import Header from './Header';
-import Table from './Table';
+import Table from '../common/Table';
 import Add from './Add';
 import Edit from './Edit';
 import { deleteEmployee, getAllEmployees } from '../../services';
+import List from './List';
+import { employeesData } from '../../data';
 
 const Dashboard = ({ setIsAuthenticated }) => {
   const [employees, setEmployees] = useState([]);
@@ -14,18 +16,19 @@ const Dashboard = ({ setIsAuthenticated }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const [posts, setPosts] = useState([]);
+  const pKey = "id";
 
   useEffect(() => {
-    // const data = JSON.parse(localStorage.getItem('employees_data'));
-    // if (data !== null && Object.keys(data).length !== 0) setEmployees(data);
+    const data = JSON.parse(localStorage.getItem('employees_data'));
+    if (data !== null && Object.keys(data).length !== 0) setEmployees(data);
 
     getAllEmployees().then(result => {
       setEmployees(result.data);
-    })
+    });
   }, []);
 
   const handleEdit = id => {
-    const [employee] = employees.filter(employee => employee._id === id);
+    const [employee] = employees.filter(employee => employee[pKey] === id);
 
     setSelectedEmployee(employee);
     setIsEditing(true);
@@ -41,7 +44,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
       cancelButtonText: 'No, cancel!',
     }).then(result => {
       if (result.value) {
-        const [employee] = employees.filter(employee => employee._id === id);
+        const [employee] = employees.filter(employee => employee[pKey] === id);
 
         deleteEmployee(id).then((result) => {
           Swal.fire({
@@ -52,7 +55,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
             timer: 1500,
           });
   
-          const employeesCopy = employees.filter(employee => employee._id !== id);
+          const employeesCopy = employees.filter(employee => employee[pKey] !== id);
           localStorage.setItem('employees_data', JSON.stringify(employeesCopy));
           setEmployees(employeesCopy);
         })
@@ -68,8 +71,8 @@ const Dashboard = ({ setIsAuthenticated }) => {
             setIsAdding={setIsAdding}
             setIsAuthenticated={setIsAuthenticated}
           />
-          <Table
-            employees={employees}
+          <List
+            employees={employeesData}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
             setIsAdding={setIsAdding}

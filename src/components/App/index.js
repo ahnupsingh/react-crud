@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import Login from '../Login';
 import Dashboard from '../Dashboard';
+import Table from '../common/Table';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -14,7 +15,9 @@ const App = () => {
   return (
     <>
       {isAuthenticated ? (
+        <>
         <Dashboard setIsAuthenticated={setIsAuthenticated} />
+        </>
       ) : (
         <Login setIsAuthenticated={setIsAuthenticated} />
       )}
