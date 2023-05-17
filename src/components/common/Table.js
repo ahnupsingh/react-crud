@@ -46,12 +46,14 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding }) => {
 
   return (
     <div>
-    <div>
+    <div className='d-flex justify-content-between'>
+      <span>&nbsp;</span>
       <input
         type="text"
         value={globalFilter || ''}
         onChange={(e) => setGlobalFilter(e.target.value)}
         placeholder="Search..."
+        className='w-25'
       />
     </div>
     <table {...getTableProps()} style={{ borderCollapse: 'collapse' }}>
@@ -102,30 +104,32 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding }) => {
         })}
       </tbody>
     </table>
-    <div>
-      <span>
-        Page{' '}
+    <div className='d-flex justify-content-between align-items-center'>
+      <select value={pageSize} onChange={handlePageSizeChange} className='w-25'>
+          {[5, 10, 25, 50, 100].map((size) => (
+            <option key={size} value={size}>
+              Show {size}
+            </option>
+          ))}
+      </select>
+      <div className='d-flex align-items-center'>
+        Page&nbsp;
         <input
           type="number"
           value={pageIndex + 1}
           onChange={handlePageChange}
           style={{ width: '50px', textAlign: 'center' }}
         />{' '}
-        of {pageOptions.length}
+        &nbsp;of {pageOptions.length}
+      </div>
+      <span>
+      <button onClick={() => previousPage()} disabled={!canPreviousPage} className="btn btn-outline-dark m-1">
+        &lt;
+      </button>
+      <button onClick={() => nextPage()} disabled={!canNextPage} className="btn btn-outline-dark m-1">
+        &gt;
+      </button>
       </span>
-      <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-        Previous
-      </button>
-      <button onClick={() => nextPage()} disabled={!canNextPage}>
-        Next
-      </button>
-      <select value={pageSize} onChange={handlePageSizeChange}>
-        {[10, 25, 50, 100].map((size) => (
-          <option key={size} value={size}>
-            Show {size}
-          </option>
-        ))}
-      </select>
     </div>
   </div>
   );
