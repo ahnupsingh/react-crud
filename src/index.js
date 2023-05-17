@@ -4,6 +4,7 @@ import './index.css';
 import App from './components/App';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Feed from './components/Feed';
+import Login from './components/Login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -13,6 +14,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="feed" element={<Feed />} />
+        <Route path="login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
