@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-
 import Header from './Header';
-import Table from '../common/Table';
 import Add from './Add';
 import Edit from './Edit';
 import { deleteEmployee, getAllEmployees } from '../../services';
 import List from './List';
-import { employeesData } from '../../data';
 import { useQuery } from 'react-query';
 import Spinner from '../common/Spinner';
 
@@ -21,15 +18,10 @@ const Dashboard = ({ setIsAuthenticated }) => {
   useEffect(() => {
     // const data = JSON.parse(localStorage.getItem('employees_data'));
     // if (data !== null && Object.keys(data).length !== 0) setEmployees(data);
-
-    // getAllEmployees().then(result => {
-    //   setEmployees(result.data);
-    // });
   }, []);
 
   const handleEdit = id => {
     const [employee] = employees.filter(employee => employee._id === id);
-
     setSelectedEmployee(employee);
     setIsEditing(true);
   };
@@ -70,7 +62,7 @@ const Dashboard = ({ setIsAuthenticated }) => {
         setIsAuthenticated={setIsAuthenticated}
       />
       <div className="container">
-        {!isLoading && <Spinner></Spinner>}
+        {isLoading && <Spinner></Spinner>}
         {!isLoading && !isAdding && !isEditing && 
             <List
             employees={data.data}

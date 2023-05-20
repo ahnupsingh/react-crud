@@ -1,5 +1,4 @@
 import axios from "axios";
-import { employeesData } from "../data";
 
 const getHeaders = () => {
     const headers = {}
@@ -15,15 +14,10 @@ export const getAllEmployees = () => {
 }
 
 export const createEmployee = (data) => {
-    const headers = {}
-    const token = localStorage.getItem("access_token")
-    if(token){
-        headers["Authorization"] = `Bearer ${token}`
-    }
     return axios({
         method: 'post',
         url: 'http://localhost:3001/employees',
-        headers: headers,
+        headers: getHeaders(),
         data: data
     })
 }

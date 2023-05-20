@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 
 const Edit = ({ employees, selectedEmployee, setEmployees, setIsEditing }) => {
-  const pKey = 'id';
   const id = selectedEmployee._id;
 
   const [firstName, setFirstName] = useState(selectedEmployee.firstName);
