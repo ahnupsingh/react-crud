@@ -5,7 +5,7 @@ import Logout from '../Logout';
 const Header = ({ setIsAdding, setIsAuthenticated }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-2 text-white">
-      <a className="navbar-brand" href="/">Seriea Frontend</a>
+      <a className="navbar-brand" href="/">React <small>Ramailo</small></a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>

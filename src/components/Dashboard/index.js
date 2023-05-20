@@ -2,26 +2,29 @@ import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 import Header from './Header';
-import Table from './Table';
+import Table from '../common/Table';
 import Add from './Add';
 import Edit from './Edit';
 import { deleteEmployee, getAllEmployees } from '../../services';
+import List from './List';
+import { employeesData } from '../../data';
+import { useQuery } from 'react-query';
+import Spinner from '../common/Spinner';
 
 const Dashboard = ({ setIsAuthenticated }) => {
   const [employees, setEmployees] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-
-  const [posts, setPosts] = useState([]);
+  const { data, isLoading, error } = useQuery('employees', getAllEmployees);
 
   useEffect(() => {
     // const data = JSON.parse(localStorage.getItem('employees_data'));
     // if (data !== null && Object.keys(data).length !== 0) setEmployees(data);
 
-    getAllEmployees().then(result => {
-      setEmployees(result.data);
-    })
+    // getAllEmployees().then(result => {
+    //   setEmployees(result.data);
+    // });
   }, []);
 
   const handleEdit = id => {
@@ -61,37 +64,38 @@ const Dashboard = ({ setIsAuthenticated }) => {
   };
 
   return (
-    <div className="container">
-      {!isAdding && !isEditing && (
-        <>
-          <Header
-            setIsAdding={setIsAdding}
-            setIsAuthenticated={setIsAuthenticated}
-          />
-          <Table
-            employees={employees}
+    <>
+      <Header
+        setIsAdding={setIsAdding}
+        setIsAuthenticated={setIsAuthenticated}
+      />
+      <div className="container">
+        {!isLoading && <Spinner></Spinner>}
+        {!isLoading && !isAdding && !isEditing && 
+            <List
+            employees={data.data}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
             setIsAdding={setIsAdding}
           />
-        </>
-      )}
-      {isAdding && (
-        <Add
-          employees={employees}
-          setEmployees={setEmployees}
-          setIsAdding={setIsAdding}
-        />
-      )}
-      {isEditing && (
-        <Edit
-          employees={employees}
-          selectedEmployee={selectedEmployee}
-          setEmployees={setEmployees}
-          setIsEditing={setIsEditing}
-        />
-      )}
+        }
+        {isAdding && (
+          <Add
+            employees={employees}
+            setEmployees={setEmployees}
+            setIsAdding={setIsAdding}
+          />
+        )}
+        {isEditing && (
+          <Edit
+            employees={employees}
+            selectedEmployee={selectedEmployee}
+            setEmployees={setEmployees}
+            setIsEditing={setIsEditing}
+          />
+        )}
     </div>
+    </>
   );
 };
 
