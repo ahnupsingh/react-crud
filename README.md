@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://ahnupsingh.github.io/crud-app/">
-      React CRUD App for interns, trainee, beginners, freshers
+      React Boilerplate App for interns, trainee, beginners, freshers
   </a>
 </h1>
 
@@ -25,8 +25,11 @@
 ## Technologies Used
 
 - [React](http://reactjs.org)
-- [Primitive UI](https://taniarascia.github.io/primitive)
+- [Bootstrap](https://getbootstrap.com/)
 - [SweetAlert2](https://sweetalert2.github.io)
+- [React Table](https://react-table-v7.tanstack.com/)
+- [React Query](https://www.npmjs.com/package/react-query)
+- [React Hook Form](https://react-hook-form.com/)
 
 ## Development
 
@@ -36,22 +39,30 @@ Install dependencies:
 npm install
 ```
 
-Now, you can start a local web server by running:
+### Run servers
+You can start a local web server by running:
 
 ```
 npm start
 ```
+You can start a local json server by running:
+
+```
+npm run serve-json
+```
 
 and then you can open http://localhost:3000 to view it in the browser.
+Open http://localhost:3001 to view data in the json server.
 
 #### Available Scripts
 
-| Script        | Description                                                             |
-| ------------- | ----------------------------------------------------------------------- |
-| npm start     | Runs the app in the development mode.                                   |
-| npm test      | Launches the test runner in the interactive watch mode.                 |
-| npm run build | Builds the app for production to the `build` folder.                    |
-| npm run eject | This command will remove the single build dependency from your project. |
+| Script             | Description                                                             |
+| ------------------ | ----------------------------------------------------------------------- |
+| npm start          | Runs the app in the development mode.                                   |
+| npm test           | Launches the test runner in the interactive watch mode.                 |
+| npm run build      | Builds the app for production to the `build` folder.                    |
+| npm run eject      | This command will remove the single build dependency from your project. |
+| npm run serve-json | This command will start a server that serves the data in db.json file.  |
 
 ## Credits
 
