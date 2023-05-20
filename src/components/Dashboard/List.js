@@ -9,8 +9,6 @@ const List = ({ employees, handleEdit, handleDelete, setIsAdding }) => {
     minimumFractionDigits: null,
   });
 
-  const pKey="id";
-
   const columns = React.useMemo(
     () => [
     {
@@ -44,10 +42,9 @@ const List = ({ employees, handleEdit, handleDelete, setIsAdding }) => {
   return (
     <div className="contain-table">
       <div className='d-flex justify-content-between align-items-center'>
-        <h1>Employees</h1>
-        <a className="nav-link" onClick={() => setIsAdding(true)}>Add</a>
       </div>
       <Table
+            // header='Employees'
             columns={columns}
             data={employees}
             className="striped-table"

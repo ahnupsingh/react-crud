@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 const Edit = ({ employees, selectedEmployee, setEmployees, setIsEditing }) => {
   const pKey = 'id';
-  const id = selectedEmployee[pKey];
+  const id = selectedEmployee._id;
 
   const [firstName, setFirstName] = useState(selectedEmployee.firstName);
   const [lastName, setLastName] = useState(selectedEmployee.lastName);
@@ -31,7 +31,7 @@ const Edit = ({ employees, selectedEmployee, setEmployees, setIsEditing }) => {
     };
 
     for (let i = 0; i < employees.length; i++) {
-      if (employees[i][pKey] === id) {
+      if (employees[i]._id === id) {
         employees.splice(i, 1, employee);
         break;
       }
