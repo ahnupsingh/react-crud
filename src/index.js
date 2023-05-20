@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Feed from './components/Feed';
 import Login from './components/Login';
 
@@ -10,12 +10,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
+    <Router>
+      <Switch>
         <Route path="/" element={<App />} />
         <Route path="feed" element={<Feed />} />
         <Route path="login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+      </Switch>
+    </Router>
   </React.StrictMode>
 );
