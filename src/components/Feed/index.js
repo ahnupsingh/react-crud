@@ -1,11 +1,10 @@
 import React from 'react';
 import Header from '../Dashboard/Header';
 
-const Feed = ({ setIsAdding, setIsAuthenticated }) => {
+const Feed = ({ setIsAuthenticated }) => {
   return (
     <div className='container'>
         <Header
-            setIsAdding={false}
             setIsAuthenticated={setIsAuthenticated}
           />
         <h1>Feed</h1>

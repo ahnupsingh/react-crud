@@ -14,7 +14,7 @@ const App = () => {
     if(!isAuth){
       navigate('/login');
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <>
