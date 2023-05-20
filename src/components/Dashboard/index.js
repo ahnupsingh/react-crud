@@ -7,6 +7,7 @@ import { deleteEmployee, getAllEmployees } from '../../services';
 import List from './List';
 import { useQuery } from 'react-query';
 import Spinner from '../common/Spinner';
+import Alert from '../common/Alert';
 
 const Dashboard = ({ setIsAuthenticated }) => {
   const [employees, setEmployees] = useState([]);
@@ -58,10 +59,12 @@ const Dashboard = ({ setIsAuthenticated }) => {
   return (
     <>
       <Header
-        setIsAdding={setIsAdding}
         setIsAuthenticated={setIsAuthenticated}
       />
       <div className="container">
+        {error && <Alert
+          type="danger"
+          ></Alert>}
         {isLoading && <Spinner></Spinner>}
         {!isLoading && !isAdding && !isEditing && 
             <List

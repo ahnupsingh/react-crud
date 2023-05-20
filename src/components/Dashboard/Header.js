@@ -2,7 +2,7 @@ import React from 'react';
 
 import Logout from '../Logout';
 
-const Header = ({ setIsAdding, setIsAuthenticated }) => {
+const Header = ({setIsAuthenticated }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-2 text-white">
       <a className="navbar-brand" href="/">React <small>Ramailo</small></a>
@@ -18,13 +18,10 @@ const Header = ({ setIsAdding, setIsAuthenticated }) => {
             <a className="nav-link" href="/feed">Feed</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" onClick={() => setIsAdding(true)}>Add Employee</a>
-          </li>
-          <li className="nav-item">
           </li>
         </ul>
       </div>
-      <form class="form-inline my-2 my-lg-0">
+      <form className="form-inline my-2 my-lg-0">
         <Logout setIsAuthenticated={setIsAuthenticated} />
       </form>
     </nav>

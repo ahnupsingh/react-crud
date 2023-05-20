@@ -10,7 +10,7 @@ const LoginForm = ({setIsAuthenticated}) => {
     console.log("LoginForm submit", data);
     signin(data).then((result)=> {
         console.log("signin", result);
-        if(result.status == 200){
+        if(result.status === 200){
           Swal.fire({
             timer: 1500,
             showConfirmButton: false,

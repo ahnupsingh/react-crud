@@ -3,11 +3,11 @@ import Table from '../common/Table';
 
 const List = ({ employees, handleEdit, handleDelete, setIsAdding }) => {
 
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: null,
-  });
+  // const formatter = new Intl.NumberFormat('en-US', {
+  //   style: 'currency',
+  //   currency: 'USD',
+  //   minimumFractionDigits: null,
+  // });
 
   const columns = React.useMemo(
     () => [
