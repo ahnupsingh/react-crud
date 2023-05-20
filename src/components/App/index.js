@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter } from "react-router-dom";
-
-import Login from '../Login';
 import Dashboard from '../Dashboard';
-import Table from '../common/Table';
 import { useNavigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -23,7 +19,7 @@ const App = () => {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Dashboard setIsAuthenticated={setIsAuthenticated} />
+        {isAuthenticated && <Dashboard setIsAuthenticated={setIsAuthenticated} />}
       </QueryClientProvider>
     </>
   );

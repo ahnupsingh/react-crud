@@ -1,8 +1,6 @@
 import React, { useMemo, useEffect } from 'react';
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table';
-import { TODO_URL } from '../../constants/common';
-import axios from "axios"
-import { useQuery } from 'react-query';
+import { PAGE_SIZES } from '../../constants/common';
 
 const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
   const {
@@ -17,7 +15,7 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
     nextPage,
     canPreviousPage,
     canNextPage,
-    pageOptions,
+    // pageOptions,
     gotoPage,
     pageCount,
     setPageSize,
@@ -32,7 +30,6 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
     usePagination
   );
   const { pageIndex, pageSize, globalFilter } = state;
-  const pKey="_id";
 
   const handlePageSizeChange = (e) => {
     setPageSize(Number(e.target.value));
@@ -43,11 +40,10 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
     gotoPage(page);
   };
 
-  const tableColumns = useMemo(() => columns, [columns]);
   const tableData = useMemo(() => page, [page]);
 
   // const fetchData = async () => {
-  //   const response = await  axios.get(TODO_URL , {
+  //   return axios.get(TODO_URL , {
   //     params: {
   //       page: pageIndex + 1,
   //       per_page: pageSize,
@@ -57,9 +53,6 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
   //   console.log("data", data)
   //   return data;
   // };
-
-  // const { newData, isLoading, error } = useQuery('newData', fetchData);
-  // console.log("newData", newData);
 
   useEffect(() => {
     // fetchData();
@@ -133,7 +126,7 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
     </table>
     <div className='d-flex justify-content-between align-items-center'>
       <select value={pageSize} onChange={handlePageSizeChange} className='w-25'>
-          {[5, 10, 25, 50, 100].map((size) => (
+          {PAGE_SIZES.map((size) => (
             <option key={size} value={size}>
               Show {size}
             </option>
@@ -147,7 +140,7 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
           onChange={handlePageChange}
           style={{ width: '50px', textAlign: 'center' }}
         />{' '}
-        &nbsp;of {pageOptions.length}
+        &nbsp;of {pageCount}
       </div>
       <span>
       <button onClick={() => previousPage()} disabled={!canPreviousPage} className="btn btn-outline-dark m-1">

@@ -14,7 +14,7 @@ const Add = ({ employees, setEmployees, setIsAdding }) => {
 
   const handleAdd = e => {
     e.preventDefault();
-    const {firstName, lastName, location, salary, title, description} = details;
+    const {firstName, lastName, location, salary, title} = details;
     if (!firstName || !lastName || !location || !salary || !title) {
       return Swal.fire({
         icon: 'error',
@@ -28,7 +28,7 @@ const Add = ({ employees, setEmployees, setIsAdding }) => {
 
     createEmployee(newEmployee).then((result) => {
 
-      if(result.status == 201){
+      if(result.status === 201){
         employees.push(result.data);
         localStorage.setItem('employees_data', JSON.stringify(employees));
         setEmployees(employees);
@@ -108,7 +108,10 @@ const Add = ({ employees, setEmployees, setIsAdding }) => {
             type="text"
             name="description"
             value={details["description"]}
-            onChange={e => setDetails({...details, description: e.target.value})} className="form-control" placeholder="Enter description"/>
+            onChange={e => setDetails({...details, description: e.target.value})} 
+            className="form-control" 
+            placeholder="Enter description"
+          />
         </div>
 
         <button type="submit" className="btn btn-primary" >Submit</button>
