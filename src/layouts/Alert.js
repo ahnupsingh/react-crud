@@ -1,4 +1,4 @@
-import { DEFAULT_ERROR_DESCRIPTION, DEFAULT_ERROR_MESSAGE, DEFAULT_ERROR_SUGGESTION } from "../../constants/common";
+import { DEFAULT_ERROR_DESCRIPTION, DEFAULT_ERROR_MESSAGE, DEFAULT_ERROR_SUGGESTION } from "../config/constants";
 
 const Alert = ({
     type="info", 

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import Header from './Header';
+import NavBar from '../../components/Navbar';
+import EmployeeForm from '../../views/employees/Form';
 import { deleteEmployee, getAllEmployees } from '../../services';
 import List from '../../views/employees/List';
 import { useQuery } from 'react-query';
 import Spinner from '../../layouts/Spinner';
 import Alert from '../../layouts/Alert';
 import { useNavigate } from 'react-router-dom';
-import EmployeeForm from '../../views/employees/Form';
+import { Footer } from '../../components/Footer';
+import { Sidebar } from '../../components/Sidebar';
 
 const Dashboard = ({ setIsAuthenticated }) => {
   const [employees, setEmployees] = useState([]);
@@ -59,10 +61,12 @@ const Dashboard = ({ setIsAuthenticated }) => {
 
   return (
     <>
-      <Header
+      <NavBar
         setIsAuthenticated={setIsAuthenticated}
       />
-      <div className="container">
+      <section className="home">
+          {/* <div className="text">Dashboard Sidebar</div> */}
+          <div className="container">
         {error && <Alert
           type="danger"
           body={error.message}
@@ -85,6 +89,9 @@ const Dashboard = ({ setIsAuthenticated }) => {
           />
         )}
     </div>
+    <Footer/>
+    </section>
+    <Sidebar/>
     </>
   );
 };

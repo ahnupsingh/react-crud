@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from 'react';
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table';
-import { PAGE_SIZES } from '../../constants/common';
+import { PAGE_SIZES } from '../config/constants';
 
 const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
   const {
@@ -108,15 +108,15 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
               >
                 <button
                     onClick={() => onEdit(row._id)}
-                    className="btn btn-primary m-1"
+                    className="btn btn-outline-primary round m-1"
                   >
-                    Edit
+                    <i className="bi bi-pencil-fill"></i>
                   </button>
                   <button
                     onClick={() => onDelete(row._id)}
-                    className="btn btn-danger m-1"
+                    className="btn btn-outline-danger round m-1"
                   >
-                    Delete
+                    <i className="bi bi-trash-fill"></i>
                   </button>
               </td>
             </tr>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { signin } from '../../services/authService';
+import AuthApi from '../../../api/auth';
 import Swal from 'sweetalert2';
 
 const LoginForm = ({setIsAuthenticated}) => {
@@ -8,7 +8,7 @@ const LoginForm = ({setIsAuthenticated}) => {
 
   const onSubmit = (data) => {
     console.log("LoginForm submit", data);
-    signin(data).then((result)=> {
+    AuthApi.signin(data).then((result)=> {
         console.log("signin", result);
         if(result.status === 200){
           Swal.fire({
@@ -51,19 +51,14 @@ const LoginForm = ({setIsAuthenticated}) => {
   };
 
   return (
+
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label>
-          Name:
-          <input type="text" {...register('name', { required: true })} />
-        </label>
+          <input type="text" {...register('name', { required: true })} placeholder="Name" />
         {errors.name && <span>This field is required</span>}
       </div>
       <div>
-        <label>
-          Email:
-          <input type="email" {...register('email', { required: true, pattern: /^\S+@\S+$/i })} />
-        </label>
+          <input type="email" {...register('email', { required: true, pattern: /^\S+@\S+$/i })} placeholder="Email" />
         {errors.email && (
           <span>
             {errors.email.type === 'required' ? 'This field is required' : 'Invalid email address'}
@@ -71,10 +66,7 @@ const LoginForm = ({setIsAuthenticated}) => {
         )}
       </div>
       <div>
-        <label>
-          Password:
-          <input type="password" {...register('password', { required: true, minLength: 6 })} />
-        </label>
+          <input type="password" {...register('password', { required: true, minLength: 6 })} placeholder="Password" />
         {errors.password && (
           <span>
             {errors.password.type === 'required'
@@ -83,7 +75,7 @@ const LoginForm = ({setIsAuthenticated}) => {
           </span>
         )}
       </div>
-      <button type="submit">Submit</button>
+      <button className="text-white text-weight-bold bt" type="submit">Submit</button>
     </form>
   );
 };

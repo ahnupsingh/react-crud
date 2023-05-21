@@ -1,7 +1,7 @@
-import React from 'react';
-import Table from '../common/Table';
+import React, {useMemo} from 'react';
+import Table from '../../layouts/Table';
 
-const List = ({ employees, handleEdit, handleDelete, setIsAdding }) => {
+const List = ({ employees, handleEdit, handleDelete, setIsAdding, setIsEditing }) => {
 
   // const formatter = new Intl.NumberFormat('en-US', {
   //   style: 'currency',
@@ -9,7 +9,7 @@ const List = ({ employees, handleEdit, handleDelete, setIsAdding }) => {
   //   minimumFractionDigits: null,
   // });
 
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
     {
         Header: 'S/N',
@@ -51,6 +51,7 @@ const List = ({ employees, handleEdit, handleDelete, setIsAdding }) => {
             onEdit={handleEdit}
             onDelete={handleDelete}
             onIsAdding={setIsAdding}
+            onIsEditing={setIsEditing}
       />
     </div>
   );

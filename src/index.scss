@@ -1,52 +1,58 @@
-/*! 
- * Primitive UI | MIT License
- *
- * A minimalist front-end design toolkit built with Sass for developing 
- * responsive, browser-consistent web apps.
- *
- * Author: Tania Rascia <hello@taniarascia.com>
- * Source: https://github.com/taniarascia/primitive
- * Documentation: https://taniarascia.github.io/primitive
- */
-/**
- * Variables
- *
- * The majority of the configuration for the toolkit.
- */
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-/* Document
-   ========================================================================== */
-/**
- * 1. Correct the line height in all browsers.
- * 2. Prevent adjustments of font size after orientation changes in iOS.
- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+$primary: #ff4133;
+$accent:#FFB74D;
+$background-color: #4052e4;
+$background-color-light: #fff2f1;
+$background-color-dark: #080808;
+$danger: red;
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root{
+  --body-color: #FFF;
+  --sidebar-color: #E4E9F7;
+  --primary-color: #1707c4;
+  --primary-color-light: #F6F5FF;
+  --header-color: #616161;
+  --footer-color: #616161;
+  --toggle-color: #DDD;
+  --text-color: #383838;
+  --tran-03: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.3s ease;
+  --tran-05: all 0.3s ease;
+}
+
 html {
   line-height: 1.15;
-  /* 1 */
   -webkit-text-size-adjust: 100%;
-  /* 2 */
+  height: 100%;
 }
 
-/* Sections
-   ========================================================================== */
-/**
- * Remove the margin in all browsers.
- */
 body {
   margin: 0;
+  height: 100%;
+  min-height: 100vh;
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+  font-size: 1rem;
 }
 
-/**
- * Render the `main` element consistently in IE.
- */
+body.dark .home .text{
+  color: var(--text-color);
+}
+
 main {
   display: block;
 }
 
-/**
- * Correct the font size and margin on `h1` elements within `section` and
- * `article` contexts in Chrome, Firefox, and Safari.
- */
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
@@ -85,6 +91,10 @@ pre {
  */
 a {
   background-color: transparent;
+}
+
+a:hover{
+  text-decoration: none;
 }
 
 /**
@@ -377,12 +387,6 @@ html {
   font-size: 1rem;
 }
 
-body {
-  color: #404040;
-  background: white;
-  font-size: 1rem;
-}
-
 p,
 ol,
 ul,
@@ -478,7 +482,7 @@ a:hover,
 a:active,
 a:focus {
   color: #0246a2;
-  text-decoration: underline;
+  // text-decoration: underline;
 }
 
 mark {
@@ -1125,10 +1129,6 @@ caption {
   }
 }
 
-/*
- * Navigation
- */
-
 /**
  * Layout
  */
@@ -1137,4 +1137,8 @@ caption {
   height: 100%;
   text-align: center;
   padding: 1rem;
+ }
+
+ .round {
+  border-radius: 50%;
  }
