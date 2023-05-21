@@ -1,7 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useAuth } from '../../../context/AuthProvider';
 
-const Logout = ({ setIsAuthenticated }) => {
+const Logout = () => {
+  const { user, setUser } = useAuth();
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     Swal.fire({
       icon: 'question',
@@ -19,7 +24,8 @@ const Logout = ({ setIsAuthenticated }) => {
           },
           willClose: () => {
             localStorage.setItem('access_token', false);
-            setIsAuthenticated(false);
+            setUser(null);
+            navigate('/login');
           },
         });
       }
@@ -28,7 +34,7 @@ const Logout = ({ setIsAuthenticated }) => {
 
   return (
     <button
-      className="btn btn-outline-light"
+      className="btn btn-outline-dark"
       onClick={handleLogout}
     >
       Logout

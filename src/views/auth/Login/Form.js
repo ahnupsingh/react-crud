@@ -1,81 +1,139 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import AuthApi from '../../../api/auth';
-import Swal from 'sweetalert2';
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import AuthApi from "../../../api/auth";
+import Swal from "sweetalert2";
+import { useAuth } from "../../../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = ({setIsAuthenticated}) => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { user, setUser } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      console.log("user", user);
+      navigate("/");
+    }
+  }, [user]);
 
   const onSubmit = (data) => {
-    console.log("LoginForm submit", data);
-    AuthApi.signin(data).then((result)=> {
-        console.log("signin", result);
-        if(result.status === 200){
-          Swal.fire({
-            timer: 1500,
-            showConfirmButton: false,
-            willOpen: () => {
-              Swal.showLoading();
-            },
-            willClose: () => {
-              localStorage.setItem('access_token', result.data.tokens.access_token);
-              setIsAuthenticated(true);
-    
-              Swal.fire({
-                icon: 'success',
-                title: 'Successfully logged in!',
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            },
-          });
-        }
-        else {
-          Swal.fire({
-            timer: 1500,
-            showConfirmButton: false,
-            willOpen: () => {
-              Swal.showLoading();
-            },
-            willClose: () => {
-              Swal.fire({
-                icon: 'error',
-                title: 'Error!',
-                text: 'Incorrect email or password.',
-                showConfirmButton: true,
-              });
-            },
-          });
-        }
-      })
+    setUser(data);
+    localStorage.setItem("user", JSON.stringify(data));
+
+    AuthApi.signin(data).then((result) => {
+      console.log("signin", result);
+      if (result.status === 200) {
+        Swal.fire({
+          timer: 1500,
+          showConfirmButton: false,
+          willOpen: () => {
+            Swal.showLoading();
+          },
+          willClose: () => {
+            localStorage.setItem(
+              "access_token",
+              result.data.tokens.access_token
+            );
+            localStorage.setItem("user", JSON.stringify(data));
+            setUser(data);
+
+            Swal.fire({
+              icon: "success",
+              title: "Successfully logged in!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          },
+        });
+      } else {
+        Swal.fire({
+          timer: 1500,
+          showConfirmButton: false,
+          willOpen: () => {
+            Swal.showLoading();
+          },
+          willClose: () => {
+            Swal.fire({
+              icon: "error",
+              title: "Error!",
+              text: "Incorrect email or password.",
+              showConfirmButton: true,
+            });
+          },
+        });
+      }
+    });
   };
 
   return (
-
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
       <div>
-          <input type="text" {...register('name', { required: true })} placeholder="Name" />
+        <input
+          type="text"
+          {...register("name", { required: true })}
+          placeholder="Name"
+        />
         {errors.name && <span>This field is required</span>}
       </div>
       <div>
-          <input type="email" {...register('email', { required: true, pattern: /^\S+@\S+$/i })} placeholder="Email" />
+        <input
+          type="email"
+          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+          placeholder="Email"
+        />
         {errors.email && (
           <span>
-            {errors.email.type === 'required' ? 'This field is required' : 'Invalid email address'}
+            {errors.email.type === "required"
+              ? "This field is required"
+              : "Invalid email address"}
           </span>
         )}
       </div>
       <div>
-          <input type="password" {...register('password', { required: true, minLength: 6 })} placeholder="Password" />
+        <input
+          type="password"
+          {...register("password", { required: true, minLength: 6 })}
+          placeholder="Password"
+        />
         {errors.password && (
           <span>
-            {errors.password.type === 'required'
-              ? 'This field is required'
-              : 'Password must have at least 6 characters'}
+            {errors.password.type === "required"
+              ? "This field is required"
+              : "Password must have at least 6 characters"}
           </span>
         )}
       </div>
-      <button className="text-white text-weight-bold bt" type="submit">Submit</button>
+      <div className="d-flex custom-control custom-checkbox mb-3">
+        <label className="custom-control-label" for="customCheck1">
+          Forgot password?
+        </label>
+      </div>
+      <button
+        className="btn btn-lg btn-primary btn-block text-uppercase"
+        type="submit"
+      >
+        Sign in
+      </button>
+      <hr class="my-4" />
+      <div className="social-login">
+        <button
+          class="btn btn-lg btn-google btn-block text-uppercase"
+          type="submit"
+        >
+          <i class="fab fa-google mr-2"></i> Sign in with Google
+        </button>
+        <button
+          class="btn btn-lg btn-facebook btn-block text-uppercase"
+          type="submit"
+        >
+          <i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook
+        </button>
+      </div>
     </form>
   );
 };

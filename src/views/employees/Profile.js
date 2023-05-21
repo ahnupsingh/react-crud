@@ -1,138 +1,135 @@
 import "./profile.scss";
 import NavBar from '../../components/Navbar';
+import Logout from "../auth/Logout";
 
 export const Profile = () => {
   return (
     <>
     <NavBar />
-    <div class="container profile-container rounded bg-white mt-5 mb-5">
-      <div class="row">
-        <div class="col-md-3 border-right">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+    <div className="container profile-container rounded bg-white mt-5 mb-5">
+      <div className="row">
+        <div className="col-md-3 border-right">
+          <div className="d-flex flex-column align-items-center text-center p-3 py-5">
             <img
-              class="rounded-circle mt-5"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU"
+              className="rounded-circle my-5"
+              src="https://i.imgur.com/C4egmYM.jpg"
             />
-            <span class="font-weight-bold">Amelly</span>
-            <span class="text-black-50">amelly12@bbb.com</span>
-            <span> </span>
+            <span className="font-weight-bold">Amelly</span>
+            <span className="text-black-50">amelly12@bbb.com</span>
+            <span className="mt-5"><Logout/></span>
           </div>
         </div>
-        <div class="col-md-5 border-right">
-          <div class="p-3 py-5">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="text-right">Profile Settings</h4>
+        <div className="col-md-5 border-right">
+          <div className="p-3 py-5">
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <h4 className="text-right">Profile</h4>
             </div>
-            <div class="row mt-2">
-              <div class="col-md-6">
-                <label class="labels">Name</label>
+            <div className="row mt-2">
+              <div className="col-md-6">
+                <label className="labels">Name</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="first name"
                   value=""
                 />
               </div>
-              <div class="col-md-6">
-                <label class="labels">Surname</label>
+              <div className="col-md-6">
+                <label className="labels">Surname</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   value=""
                   placeholder="surname"
                 />
               </div>
             </div>
-            <div class="row mt-3">
+            <div className="row mt-3">
               
-              <div class="col-md-12">
-                <label class="labels">PhoneNumber</label>
+              <div className="col-md-12">
+                <label className="labels">PhoneNumber</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="enter phone number"
                   value=""
                 />
               </div>
-              <div class="col-md-12">
-                <label class="labels">Address</label>
+              <div className="col-md-12">
+                <label className="labels">Address</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="enter address"
                   value=""
                 />
               </div>
-              <div class="col-md-12">
-                <label class="labels">Email ID</label>
+              <div className="col-md-12">
+                <label className="labels">Email ID</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="enter email id"
                   value=""
                 />
               </div>
-              <div class="col-md-12">
-                <label class="labels">Education</label>
+              <div className="col-md-12">
+                <label className="labels">Education</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="education"
                   value=""
                 />
               </div>
             </div>
-            <div class="row mt-3">
-              <div class="col-md-6">
-                <label class="labels">Country</label>
+            <div className="row mt-3">
+              <div className="col-md-6">
+                <label className="labels">Country</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="country"
                   value=""
                 />
               </div>
-              <div class="col-md-6">
-                <label class="labels">State/Region</label>
+              <div className="col-md-6">
+                <label className="labels">State/Region</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   value=""
                   placeholder="state"
                 />
               </div>
             </div>
-            <div class="mt-5 text-center">
-              <button class="btn btn-primary profile-button" type="button">
+            <div className="mt-5 text-center">
+              <button className="btn btn-primary profile-button" type="button">
                 Save Profile
               </button>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="p-3 py-5">
-            <div class="d-flex justify-content-between align-items-center experience">
-              <span>Edit Experience</span>
-              <span class="border px-3 p-1 add-experience">
-                <i class="fa fa-plus"></i>&nbsp;Experience
-              </span>
+        <div className="col-md-4">
+          <div className="p-3 py-5">
+            <div className="d-flex justify-content-between align-items-center mb-3">
+                <h4 className="text-right">Experience</h4>
             </div>
-            <br />
-            <div class="col-md-12">
-              <label class="labels">Experience in Designing</label>
+            <div className="col-md-12">
+              <label className="labels">Experience in Designing</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="experience"
                 value=""
               />
             </div>
             <br />
-            <div class="col-md-12">
-              <label class="labels">Additional Details</label>
+            <div className="col-md-12">
+              <label className="labels">Additional Details</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="additional details"
                 value=""
               />

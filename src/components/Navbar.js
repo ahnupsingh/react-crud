@@ -1,7 +1,7 @@
 import React from 'react';
 import './components.scss';
 
-const Header = ({setIsAuthenticated }) => {
+const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-2 text-white">
       <div className='container'>
@@ -18,7 +18,6 @@ const Header = ({setIsAuthenticated }) => {
         </div>
       </div>
       <a href="/profile" className="form-inline my-2 my-lg-0 d-none d-md-block">
-        {/* <Logout setIsAuthenticated={setIsAuthenticated} /> */}
         <img src="https://i.imgur.com/C4egmYM.jpg" className="rounded-circle" width="30"/>
       </a>
       </div>

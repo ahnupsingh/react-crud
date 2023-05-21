@@ -2,12 +2,10 @@ import React from 'react';
 import Header from '../../components/Navbar';
 import './feed.scss';
 
-const Feed = ({ setIsAuthenticated }) => {
+const Feed = () => {
   return (
     <>
-      <Header
-        setIsAuthenticated={setIsAuthenticated}
-      />
+      <Header/>
       <div className="container feed-container">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">

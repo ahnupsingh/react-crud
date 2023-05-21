@@ -6,7 +6,9 @@ $accent:#FFB74D;
 $background-color: #4052e4;
 $background-color-light: #fff2f1;
 $background-color-dark: #080808;
+$background-color-grey: #616161;
 $danger: red;
+$gradient: linear-gradient(to right, #0a346d, #1598ef);
 
 *{
   margin: 0;
@@ -18,7 +20,7 @@ $danger: red;
 :root{
   --body-color: #FFF;
   --sidebar-color: #E4E9F7;
-  --primary-color: #1707c4;
+  --primary-color: #0a346d;
   --primary-color-light: #F6F5FF;
   --header-color: #616161;
   --footer-color: #616161;
@@ -47,6 +49,10 @@ body {
 
 body.dark .home .text{
   color: var(--text-color);
+}
+
+.home.dark{
+  background-color: $background-color-dark;
 }
 
 main {
