@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../config/constants";
 
 const getHeaders = () => {
     const headers = {}
@@ -10,22 +11,30 @@ const getHeaders = () => {
 }
 
 export const getAllEmployees = () => {
-    return axios.get('http://localhost:3001/employees')
+    return axios.get(`${BASE_URL}/employees`)
 }
 
 export const createEmployee = (data) => {
     return axios({
         method: 'post',
-        url: 'http://localhost:3001/employees',
+        url: `${BASE_URL}/employees`,
         headers: getHeaders(),
         data: data
+    })
+}
+
+export const updateEmployee = (id) => {
+    return axios({
+        method: 'put',
+        url: `${BASE_URL}/employees/${id}`,
+        headers: getHeaders(),
     })
 }
 
 export const deleteEmployee = (id) => {
     return axios({
         method: 'delete',
-        url: `http://localhost:3001/employees/${id}`,
+        url: `${BASE_URL}/employees/${id}`,
         headers: getHeaders(),
     })
 }
