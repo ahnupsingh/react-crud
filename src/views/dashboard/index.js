@@ -11,13 +11,14 @@ import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer";
 import { Sidebar } from "../../components/Sidebar";
 import { useNavigation } from "../../context/NavigationProvider";
+import { cacheConfig } from "../../config/cache";
 
 const Dashboard = () => {
   const [employees, setEmployees] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const { data, isLoading, error } = useQuery("employees", getAllEmployees);
+  const { data, isLoading, error } = useQuery("employees", getAllEmployees, cacheConfig);
   const navigate = useNavigate();
   const { mode, setMode } = useNavigation();
 
