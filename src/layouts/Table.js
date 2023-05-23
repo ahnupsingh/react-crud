@@ -1,6 +1,9 @@
 import React, { useMemo, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table';
+import EmployeeApi from '../api/employee';
 import { PAGE_SIZES } from '../config/constants';
+import { EMPLOYEE_FORM } from '../config/url';
 
 const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
   const {
@@ -41,6 +44,7 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
   };
 
   const tableData = useMemo(() => page, [page]);
+  const navigate = useNavigate();
 
   // const fetchData = async () => {
   //   return axios.get(TODO_URL , {
@@ -55,7 +59,7 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
   // };
 
   useEffect(() => {
-    // fetchData();
+    EmployeeApi.getAllEmployees(pageIndex, pageSize);
   }, [pageIndex, pageSize]);
 
 
@@ -63,7 +67,7 @@ const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
     <div>
     <div className='d-flex justify-content-between align-items-center'>
       <div className='d-flex align-items-center'>
-        {onIsAdding && <button onClick={() => onIsAdding(true)} disabled={!canNextPage} className="btn btn-outline-dark m-1">
+        {<button onClick={() => navigate(EMPLOYEE_FORM)} disabled={!canNextPage} className="btn btn-outline-dark m-1">
           +
         </button>}
       </div>

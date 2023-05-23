@@ -4,6 +4,7 @@ import AuthApi from "../../../api/auth";
 import Swal from "sweetalert2";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { ROOT_URL } from "../../../config/url";
 
 const LoginForm = () => {
   const {
@@ -17,7 +18,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (user) {
       console.log("user", user);
-      navigate("/");
+      navigate(ROOT_URL);
     }
   }, [user]);
 
