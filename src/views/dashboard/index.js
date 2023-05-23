@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import NavBar from "../../components/Navbar";
 import EmployeeForm from "../../views/employees/Form";
-import { deleteEmployee, getAllEmployees } from "../../services";
 import List from "../../views/employees/List";
 import { useQuery } from "react-query";
 import Spinner from "../../layouts/Spinner";
@@ -11,14 +10,16 @@ import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer";
 import { Sidebar } from "../../components/Sidebar";
 import { useNavigation } from "../../context/NavigationProvider";
-import { cacheConfig } from "../../config/cache";
+import { employeesQueryConfig } from "../../config/query";
+import EmployeeApi from "../../api/employee";
+import { EMPLOYEE_FORM } from "../../config/url";
 
 const Dashboard = () => {
   const [employees, setEmployees] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const { data, isLoading, error } = useQuery("employees", getAllEmployees, cacheConfig);
+  const { data, isLoading, error, refetch } = useQuery("employees", EmployeeApi.getAllEmployees, employeesQueryConfig);
   const navigate = useNavigate();
   const { mode, setMode } = useNavigation();
 
@@ -30,7 +31,7 @@ const Dashboard = () => {
   const handleEdit = (id) => {
     const [employee] = employees.filter((employee) => employee._id === id);
     setSelectedEmployee(employee);
-    navigate("/form");
+    navigate(EMPLOYEE_FORM);
   };
 
   const handleDelete = (id) => {
@@ -45,7 +46,7 @@ const Dashboard = () => {
       if (result.value) {
         const [employee] = employees.filter((employee) => employee._id === id);
 
-        deleteEmployee(id).then((result) => {
+        EmployeeApi.deleteEmployee(id).then((result) => {
           Swal.fire({
             icon: "success",
             title: "Deleted!",
@@ -71,7 +72,7 @@ const Dashboard = () => {
         <div className="container">
           {error && <Alert type="danger" body={error.message}></Alert>}
           {isLoading && <Spinner></Spinner>}
-          {!isLoading && !isAdding && !isEditing && (
+          {!isLoading && data && (
             <List
               employees={data.data}
               handleEdit={handleEdit}

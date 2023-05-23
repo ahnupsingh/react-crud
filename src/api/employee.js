@@ -1,40 +1,34 @@
-import axios from "axios";
+import axios from "./index";
 import { BASE_URL } from "../config/constants";
-
-const getHeaders = () => {
-    const headers = {}
-    const token = localStorage.getItem("access_token")
-    if(token){
-        headers["Authorization"] = `Bearer ${token}`
+class EmployeeApi {
+    
+    static getAllEmployees = () => {
+        return axios.get(`${BASE_URL}/employees`)
     }
-    return headers;
+
+    static createEmployee = (data) => {
+        return axios({
+            method: 'post',
+            url: `${BASE_URL}/employees`,
+            data: data
+        })
+    }
+
+    static updateEmployee = (id) => {
+        return axios({
+            method: 'put',
+            url: `${BASE_URL}/employees/${id}`
+        })
+    }
+
+    static deleteEmployee = (id) => {
+        return axios({
+            method: 'delete',
+            url: `${BASE_URL}/employees/${id}`
+        })
+    }
 }
 
-export const getAllEmployees = () => {
-    return axios.get(`${BASE_URL}/employees`)
-}
+let base = "employees";
 
-export const createEmployee = (data) => {
-    return axios({
-        method: 'post',
-        url: `${BASE_URL}/employees`,
-        headers: getHeaders(),
-        data: data
-    })
-}
-
-export const updateEmployee = (id) => {
-    return axios({
-        method: 'put',
-        url: `${BASE_URL}/employees/${id}`,
-        headers: getHeaders(),
-    })
-}
-
-export const deleteEmployee = (id) => {
-    return axios({
-        method: 'delete',
-        url: `${BASE_URL}/employees/${id}`,
-        headers: getHeaders(),
-    })
-}
+export default EmployeeApi;
