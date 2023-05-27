@@ -2,6 +2,10 @@ import axios from "./index";
 
 class AuthApi {
 
+    static login = (params) => {
+        return axios.get(`/user/`, params)
+    }
+
     static signin = (data) => {
         return axios.post(`${base}/auth/signin`,data)
     }
