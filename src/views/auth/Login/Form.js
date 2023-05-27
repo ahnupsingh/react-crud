@@ -4,8 +4,8 @@ import AuthApi from "../../../api/auth";
 import Swal from "sweetalert2";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import { ROOT_URL } from "../../../config/url";
 import Button from "../../../components/fields/Button";
+import { PROFILE_URL, ROOT_URL } from "../../../config/url";
 
 const LoginForm = () => {
   const {
@@ -19,16 +19,18 @@ const LoginForm = () => {
   useEffect(() => {
     if (user) {
       console.log("user", user);
-      navigate(ROOT_URL);
+      navigate(PROFILE_URL);
     }
   }, [user]);
 
   const onSubmit = (data) => {
-    setUser(data);
-    localStorage.setItem("user", JSON.stringify(data));
+    // setUser(data);
+    localStorage.setItem("user =---->", JSON.stringify(data));
 
-    AuthApi.signin(data).then((result) => {
-      console.log("signin", result);
+    // call an API to login
+      // when api gives success response, navigate to root url
+    AuthApi.login(data).then((result) => {
+      console.log("signin -> ", result);
       if (result.status === 200) {
         Swal.fire({
           timer: 1500,
@@ -37,12 +39,12 @@ const LoginForm = () => {
             Swal.showLoading();
           },
           willClose: () => {
-            localStorage.setItem(
-              "access_token",
-              result.data.tokens.access_token
-            );
-            localStorage.setItem("user", JSON.stringify(data));
-            setUser(data);
+            // localStorage.setItem(
+            //   "access_token",
+            //   result.data.tokens.access_token
+            // );
+            localStorage.setItem("user", JSON.stringify(result.data));
+            setUser(result.data);
 
             Swal.fire({
               icon: "success",
@@ -74,14 +76,14 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
-      <div>
+      {/* <div>
         <input
           type="text"
           {...register("name", { required: true })}
           placeholder="Name"
         />
         {errors.name && <span>This field is required</span>}
-      </div>
+      </div> */}
       <div>
         <input
           type="email"

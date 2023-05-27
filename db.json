@@ -1,4 +1,12 @@
 {
+  "user": {
+    "id": 1,
+    "name": "Anup",
+    "email": "anup.singh@gmail.com",
+    "password": "123123123",
+    "profilePhoto": "",
+    "phonme": "98181311488"
+  },
   "employees": [
     {
       "_id": 1,
