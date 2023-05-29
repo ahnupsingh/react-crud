@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import AuthApi from "../../../api/auth";
 import Swal from "sweetalert2";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import { ROOT_URL } from "../../../config/url";
+import { PROFILE_URL, ROOT_URL, SIGNUP_URL } from "../../../config/url";
 
 const LoginForm = () => {
   const {
@@ -18,16 +19,18 @@ const LoginForm = () => {
   useEffect(() => {
     if (user) {
       console.log("user", user);
-      navigate(ROOT_URL);
+      navigate(PROFILE_URL);
     }
   }, [user]);
 
   const onSubmit = (data) => {
-    setUser(data);
-    localStorage.setItem("user", JSON.stringify(data));
+    // setUser(data);
+    localStorage.setItem("user =---->", JSON.stringify(data));
 
-    AuthApi.signin(data).then((result) => {
-      console.log("signin", result);
+    // call an API to login
+    // when api gives success response, navigate to root url
+    AuthApi.login(data).then((result) => {
+      console.log("signin -> ", result);
       if (result.status === 200) {
         Swal.fire({
           timer: 1500,
@@ -36,12 +39,12 @@ const LoginForm = () => {
             Swal.showLoading();
           },
           willClose: () => {
-            localStorage.setItem(
-              "access_token",
-              result.data.tokens.access_token
-            );
-            localStorage.setItem("user", JSON.stringify(data));
-            setUser(data);
+            // localStorage.setItem(
+            //   "access_token",
+            //   result.data.tokens.access_token
+            // );
+            localStorage.setItem("user", JSON.stringify(result.data));
+            setUser(result.data);
 
             Swal.fire({
               icon: "success",
@@ -70,17 +73,20 @@ const LoginForm = () => {
       }
     });
   };
+  const handleNavigate = () => {
+    navigate(SIGNUP_URL);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
-      <div>
+      {/* <div>
         <input
           type="text"
           {...register("name", { required: true })}
           placeholder="Name"
         />
         {errors.name && <span>This field is required</span>}
-      </div>
+      </div> */}
       <div>
         <input
           type="email"
@@ -114,12 +120,22 @@ const LoginForm = () => {
           Forgot password?
         </label>
       </div>
-      <button
-        className="btn btn-lg btn-primary btn-block text-uppercase"
-        type="submit"
-      >
-        Sign in
-      </button>
+
+      <div className="d-flex justify-content-between">
+        <button
+          className="btn btn-lg btn-primary btn-block text-uppercase"
+          type="submit"
+        >
+          Sign in
+        </button>
+        <button
+          className="btn btn-lg btn-primary btn-block text-uppercase"
+          onClick={handleNavigate}
+        >
+          Sign Up
+        </button>
+      </div>
+
       <hr class="my-4" />
       <div className="social-login">
         <button
