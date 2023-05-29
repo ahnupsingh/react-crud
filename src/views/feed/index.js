@@ -1,8 +1,27 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import Header from '../../components/Navbar';
+import AuthApi from "../../api/auth";
 import './feed.scss';
+import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
 
 const Feed = () => {
+
+    const [user, setUser] =useState({title:"", description:"", createdAt:"", workType:"", location:""})
+
+    const [feed, setFeed] = useState();
+    // const { data, isLoading, error, refetch } = useQuery("feed", AuthApi.getBlog);
+    useEffect(() => {
+        async function getBooking() {
+            const result =  await AuthApi.getBlog(user)
+            console.log("result",result)
+            console.log(result.data);
+            setFeed(result.data);
+            
+        }
+        getBooking();
+    }, []);
+
   return (
     <>
       <Header/>
@@ -15,6 +34,7 @@ const Feed = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
+              
                     <ul className="navbar-nav topnav  ms-auto">
                         <li className="nav-item">
                             <a className="nav-link active" href="#">All<span></span></a>
@@ -41,7 +61,12 @@ const Feed = () => {
                 </div>
             </div>
         </nav>
-        <div className="row">
+        <div className="f-right m-all-1rem">
+        <Link to="/CreateBlog">
+        <button>Create Blog</button>
+        </Link>
+        </div>
+        <div className="row w-100">
             <div className="col-lg-4 col-md-6 col-sm-6">
                 <div className="category mb-30">
                     <div className="job">
@@ -174,6 +199,33 @@ const Feed = () => {
                     </div>
                 </div>
             </div>
+
+            {feed?.map((feed) => (
+            <div className="col-lg-4 col-md-6 col-sm-6">
+                <div className="category mb-30">
+                    <div className="job">
+                        <span className="colors2 mb-4">{feed.title}</span>
+                        <h5><a href="#">{feed.description}</a></h5>
+                        <ul className="place">
+                            <li>
+                                <p><i className="fas fa-map-marker-alt pe-2"></i> {feed.location}</p>
+                            </li>
+                            <li>
+                                <p className="ps-5"><i className="fas fa-map-marker-alt pe-2"></i>{feed.workType}</p>
+                            </li>
+                        </ul>
+                        <div className="pricing d-flex justify-content-between align-items-center">
+                            <div className="left">
+                                <p>Globe Solution Ltd.</p>
+                            </div>
+                            <span className="time">{feed.createdAt}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ))}
+
+
             <div className="col-12 d-flex align-items-center justify-content-center">
                 <div className="btn btn-primary mb-30">
                     <span>Find More</span>

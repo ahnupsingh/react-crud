@@ -9,7 +9,7 @@ const Button = (props) => {
       type={type}
       {...rest}
     >
-      {icon && <i className={`${icon} mr-2`}></i>}{{text}}
+      {icon && <i className={`${icon} mr-2`}></i>}{text}
     </button>
   );
 };

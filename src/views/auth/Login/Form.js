@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import AuthApi from "../../../api/auth";
 import Swal from "sweetalert2";
 import { useAuth } from "../../../context/AuthProvider";
-import { useNavigate } from "react-router-dom";
-import Button from "../../../components/fields/Button";
+import { useNavigate, Link } from "react-router-dom";
 import { PROFILE_URL } from "../../../config/url";
 import InputField from "../../../components/fields/InputField";
+import Button from "../../../components/fields/Button";
 
 const LoginForm = () => {
   const {
@@ -20,19 +20,22 @@ const LoginForm = () => {
   useEffect(() => {
     if (user) {
       console.log("user", user);
-      navigate(PROFILE_URL);
+      // navigate(PROFILE_URL);
     }
   }, [user]);
 
+
+  
   const onSubmit = (data) => {
     // setUser(data);
-    console.log("user =---->", JSON.stringify(data));
+    localStorage.setItem("user =---->", JSON.stringify(data));
 
-    // call an API to login
+      // call an API to login
       // when api gives success response, navigate to root url
-    AuthApi.login(data).then((result) => {
-      console.log("signin -> ", result);
+      AuthApi.login(data).then((result) => {
+        console.log("signin -> ", result);
       if (result.status === 200) {
+        navigate(PROFILE_URL);
         Swal.fire({
           timer: 1500,
           showConfirmButton: false,
@@ -88,7 +91,6 @@ const LoginForm = () => {
           }}
           placeholder="Email"
           errors={errors}
-          required
         />
       </div>
       <div>
@@ -105,7 +107,6 @@ const LoginForm = () => {
           }}
           placeholder="Password"
           errors={errors}
-          required
         />
       </div>
       <div className="d-flex custom-control custom-checkbox mb-3">
@@ -113,13 +114,21 @@ const LoginForm = () => {
           Forgot password?
         </label>
       </div>
+      <div style={{display:"flex", gap :"1.5rem"}}>
       <button
         className="btn btn-lg btn-primary btn-block text-uppercase"
         type="submit"
       >
         Sign in
       </button>
-      <hr class="my-4" />
+      <Link to="/Signup">
+      <button className="btn btn-lg btn-primary btn-block text-uppercase" >
+        Sign up
+      </button>
+      </Link>
+      
+      </div>
+      <hr className="my-4" />
       <div className="social-login">
         <Button
           type="submit"

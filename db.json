@@ -1,12 +1,85 @@
 {
-  "user": {
-    "id": 1,
-    "name": "Anup",
-    "email": "anup.singh@gmail.com",
-    "password": "123123123",
-    "profilePhoto": "",
-    "phonme": "98181311488"
-  },
+  "user": [
+    {
+      "name": "Niraj yadav",
+      "phone": "8102162627",
+      "email": "Niraj@gamil.com",
+      "password": "123456",
+      "profilePhoto": {
+        "0": {}
+      },
+      "id": "11ad4790-33bb-4fb1-84e1-c2d3dbfcedd5"
+    },
+    {
+      "name": "vikash",
+      "phone": "8102162627",
+      "email": "Rupesh@gamil.com",
+      "password": "123123123",
+      "profilePhoto": {
+        "0": {}
+      },
+      "id": "8d62203a-2e0f-45bf-b0b0-094da9d78758"
+    }
+  ],
+  "blog": [
+    {
+      "id": 1,
+      "user_id": 12,
+      "title": "Art",
+      "description": "User Interface Designer",
+      "location": "New York",
+      "workType": "Full-Time",
+      "createdAt": "2h ago"
+    },
+    {
+      "title": "Finance",
+      "description": "Upgrade your finacial score",
+      "location": "Gremany",
+      "workType": "Full Time",
+      "createdAt": "09:12",
+      "id": "047d6e54-4d0e-4c00-a895-9036f522c7ce"
+    },
+    {
+      "title": "Medical",
+      "description": "Medical Science",
+      "location": "India",
+      "workType": "Part Time",
+      "createdAt": "09:16",
+      "id": "327198a3-088d-47c5-a536-5a708a6d04cf"
+    },
+    {
+      "title": "Marketing",
+      "description": "Markeing experience",
+      "location": "Norway",
+      "workType": "Full Time",
+      "createdAt": "21:17",
+      "id": "27f45704-b9aa-464b-911a-e0170d2045cb"
+    },
+    {
+      "title": "sports",
+      "description": "cricket",
+      "location": "Banglore ",
+      "workType": "Full Time",
+      "createdAt": "20:49",
+      "id": "a4d03cfb-b51e-4287-aebc-f9f956adf8f1"
+    },
+    {
+      "title": "Java Developer",
+      "description": "FullStack Java Developer",
+      "location": "INdia",
+      "workType": "Full Time",
+      "createdAt": "07:32",
+      "id": "e41fbadc-7fef-4c18-bd1c-cfef262cfc74"
+    },
+    {
+      "title": "Sports",
+      "description": "Football",
+      "location": "India",
+      "workType": "Full Time",
+      "createdAt": "16:06",
+      "id": "14a3f625-9386-4e78-a200-9f2ac9973afe"
+    }
+  ],
   "employees": [
     {
       "_id": 1,
