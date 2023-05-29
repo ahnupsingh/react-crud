@@ -295,7 +295,7 @@ const Feed = () => {
                     <div className="left">
                       <p>Globe Solution Ltd.</p>
                     </div>
-                    <span className="time">{feed.createdAt}</span>
+                    <span className="time">{feed.createdAt} </span>
                   </div>
                 </div>
               </div>
