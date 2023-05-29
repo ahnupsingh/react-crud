@@ -5,7 +5,7 @@ import EmployeeApi from '../api/employee';
 import { PAGE_SIZES } from '../config/constants';
 import { EMPLOYEE_FORM } from '../config/url';
 
-const Table = ({ columns, data, onEdit, onDelete, onIsAdding, header='' }) => {
+const Table = ({ columns, data, onEdit, onDelete, header='' }) => {
   const {
     getTableProps,
     getTableBodyProps,

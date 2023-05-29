@@ -101,148 +101,365 @@
       "id": "6HdyVz1"
     }
   ],
-
   "states": [
-    {"name": "Andhra Pradesh", "id": "Andhra Pradesh"},
-    {"name": "Arunachal Pradesh", "id": "Arunachal Pradesh"},
-    {"name": "Assam", "id": "Assam"},
-    {"name": "Bihar", "id": "Bihar"},
-    {"name": "Chhattisgarh", "id": "Chhattisgarh"},
-    {"name": "Goa", "id": "Goa"},
-    {"name": "Gujarat", "id": "Gujarat"}
+    {
+      "name": "Andhra Pradesh",
+      "id": "Andhra Pradesh"
+    },
+    {
+      "name": "Arunachal Pradesh",
+      "id": "Arunachal Pradesh"
+    },
+    {
+      "name": "Assam",
+      "id": "Assam"
+    },
+    {
+      "name": "Bihar",
+      "id": "Bihar"
+    },
+    {
+      "name": "Chhattisgarh",
+      "id": "Chhattisgarh"
+    },
+    {
+      "name": "Goa",
+      "id": "Goa"
+    },
+    {
+      "name": "Gujarat",
+      "id": "Gujarat"
+    }
   ],
-
   "cities": {
     "Andhra Pradesh": [
-      {"name": "Hyderabad", "id": "Hyderabad"},
-      {"name": "Visakhapatnam", "id": "Visakhapatnam"}
+      {
+        "name": "Hyderabad",
+        "id": "Hyderabad"
+      },
+      {
+        "name": "Visakhapatnam",
+        "id": "Visakhapatnam"
+      }
     ],
     "Bihar": [
-      {"name": "Patna", "id": "Patna"},
-      {"name": "Gaya", "id": "Gaya"}
+      {
+        "name": "Patna",
+        "id": "Patna"
+      },
+      {
+        "name": "Gaya",
+        "id": "Gaya"
+      }
     ],
     "Gujarat": [
-      {"name": "Ahmedabad", "id": "Ahmedabad"},
-      {"name": "Surat", "id": "Surat"}
+      {
+        "name": "Ahmedabad",
+        "id": "Ahmedabad"
+      },
+      {
+        "name": "Surat",
+        "id": "Surat"
+      }
     ],
     "Maharashtra": [
-      {"name": "Mumbai", "id": "Mumbai"},
-      {"name": "Pune", "id": "Pune"}
+      {
+        "name": "Mumbai",
+        "id": "Mumbai"
+      },
+      {
+        "name": "Pune",
+        "id": "Pune"
+      }
     ],
     "Telangana": [
-      {"name": "Hyderabad", "id": "Hyderabad"},
-      {"name": "Warangal", "id": "Warangal"}
+      {
+        "name": "Hyderabad",
+        "id": "Hyderabad"
+      },
+      {
+        "name": "Warangal",
+        "id": "Warangal"
+      }
     ],
     "West Bengal": [
-      {"name": "Kolkata", "id": "Kolkata"},
-      {"name": "Asansol", "id": "Asansol"}
+      {
+        "name": "Kolkata",
+        "id": "Kolkata"
+      },
+      {
+        "name": "Asansol",
+        "id": "Asansol"
+      }
     ],
     "Karnataka": [
-      {"name": "Bengaluru", "id": "Bengaluru"},
-      {"name": "Mysuru", "id": "Mysuru"}
+      {
+        "name": "Bengaluru",
+        "id": "Bengaluru"
+      },
+      {
+        "name": "Mysuru",
+        "id": "Mysuru"
+      }
     ],
     "Arunachal Pradesh": [
-      {"name": "Itanagar", "id": "Itanagar"},
-      {"name": "Tawang", "id": "Tawang"}
+      {
+        "name": "Itanagar",
+        "id": "Itanagar"
+      },
+      {
+        "name": "Tawang",
+        "id": "Tawang"
+      }
     ],
     "Assam": [
-      {"name": "Guwahati", "id": "Guwahati"},
-      {"name": "Silchar", "id": "Silchar"}
+      {
+        "name": "Guwahati",
+        "id": "Guwahati"
+      },
+      {
+        "name": "Silchar",
+        "id": "Silchar"
+      }
     ],
     "Chhattisgarh": [
-      {"name": "Raipur", "id": "Raipur"},
-      {"name": "Bilaspur", "id": "Bilaspur"}
+      {
+        "name": "Raipur",
+        "id": "Raipur"
+      },
+      {
+        "name": "Bilaspur",
+        "id": "Bilaspur"
+      }
     ],
     "Goa": [
-      {"name": "Panaji", "id": "Panaji"},
-      {"name": "Margao", "id": "Margao"}
+      {
+        "name": "Panaji",
+        "id": "Panaji"
+      },
+      {
+        "name": "Margao",
+        "id": "Margao"
+      }
     ]
   },
-
   "postalCodes": {
     "Hyderabad": [
-      {"name": "500001", "id": "500001"},
-      {"name": "500002", "id": "500002"},
-      {"name": "500003", "id": "500003"}
+      {
+        "name": "500001",
+        "id": "500001"
+      },
+      {
+        "name": "500002",
+        "id": "500002"
+      },
+      {
+        "name": "500003",
+        "id": "500003"
+      }
     ],
     "Visakhapatnam": [
-      {"name": "530001", "id": "530001"},
-      {"name": "530002", "id": "530002"},
-      {"name": "530003", "id": "530003"}
+      {
+        "name": "530001",
+        "id": "530001"
+      },
+      {
+        "name": "530002",
+        "id": "530002"
+      },
+      {
+        "name": "530003",
+        "id": "530003"
+      }
     ],
     "Mumbai": [
-      {"name": "400001", "id": "400001"},
-      {"name": "400002", "id": "400002"},
-      {"name": "400003", "id": "400003"}
+      {
+        "name": "400001",
+        "id": "400001"
+      },
+      {
+        "name": "400002",
+        "id": "400002"
+      },
+      {
+        "name": "400003",
+        "id": "400003"
+      }
     ],
     "Pune": [
-      {"name": "411001", "id": "411001"},
-      {"name": "411002", "id": "411002"},
-      {"name": "411003", "id": "411003"}
+      {
+        "name": "411001",
+        "id": "411001"
+      },
+      {
+        "name": "411002",
+        "id": "411002"
+      },
+      {
+        "name": "411003",
+        "id": "411003"
+      }
     ],
     "Ahmedabad": [
-      {"name": "380001", "id": "380001"},
-      {"name": "380002", "id": "380002"},
-      {"name": "380003", "id": "380003"}
+      {
+        "name": "380001",
+        "id": "380001"
+      },
+      {
+        "name": "380002",
+        "id": "380002"
+      },
+      {
+        "name": "380003",
+        "id": "380003"
+      }
     ],
     "Surat": [
-      {"name": "395001", "id": "395001"},
-      {"name": "395002", "id": "395002"},
-      {"name": "395003", "id": "395003"}
+      {
+        "name": "395001",
+        "id": "395001"
+      },
+      {
+        "name": "395002",
+        "id": "395002"
+      },
+      {
+        "name": "395003",
+        "id": "395003"
+      }
     ],
     "Patna": [
-      {"name": "800001", "id": "800001"},
-      {"name": "800002", "id": "800002"},
-      {"name": "800003", "id": "800003"}
+      {
+        "name": "800001",
+        "id": "800001"
+      },
+      {
+        "name": "800002",
+        "id": "800002"
+      },
+      {
+        "name": "800003",
+        "id": "800003"
+      }
     ],
     "Gaya": [
-      {"name": "823001", "id": "823001"},
-      {"name": "823002", "id": "823002"},
-      {"name": "823003", "id": "823003"}
+      {
+        "name": "823001",
+        "id": "823001"
+      },
+      {
+        "name": "823002",
+        "id": "823002"
+      },
+      {
+        "name": "823003",
+        "id": "823003"
+      }
     ],
     "Panaji": [
-      {"name": "403001", "id": "403001"},
-      {"name": "403002", "id": "403002"},
-      {"name": "403003", "id": "403003"}
+      {
+        "name": "403001",
+        "id": "403001"
+      },
+      {
+        "name": "403002",
+        "id": "403002"
+      },
+      {
+        "name": "403003",
+        "id": "403003"
+      }
     ],
     "Margao": [
-      {"name": "403601", "id": "403601"},
-      {"name": "403602", "id": "403602"},
-      {"name": "403603", "id": "403603"}
+      {
+        "name": "403601",
+        "id": "403601"
+      },
+      {
+        "name": "403602",
+        "id": "403602"
+      },
+      {
+        "name": "403603",
+        "id": "403603"
+      }
     ],
     "Guwahati": [
-      {"name": "781001", "id": "781001"},
-      {"name": "781002", "id": "781002"},
-      {"name": "781003", "id": "781003"}
+      {
+        "name": "781001",
+        "id": "781001"
+      },
+      {
+        "name": "781002",
+        "id": "781002"
+      },
+      {
+        "name": "781003",
+        "id": "781003"
+      }
     ],
     "Silchar": [
-      {"name": "788001", "id": "788001"},
-      {"name": "788002", "id": "788002"},
-      {"name": "788003", "id": "788003"}
+      {
+        "name": "788001",
+        "id": "788001"
+      },
+      {
+        "name": "788002",
+        "id": "788002"
+      },
+      {
+        "name": "788003",
+        "id": "788003"
+      }
     ],
     "Itanagar": [
-      {"name": "791111", "id": "791111"},
-      {"name": "791112", "id": "791112"},
-      {"name": "791113", "id": "791113"}
+      {
+        "name": "791111",
+        "id": "791111"
+      },
+      {
+        "name": "791112",
+        "id": "791112"
+      },
+      {
+        "name": "791113",
+        "id": "791113"
+      }
     ],
     "Tawang": [
-      {"name": "790104", "id": "790104"},
-      {"name": "790105", "id": "790105"},
-      {"name": "790106", "id": "790106"}
+      {
+        "name": "790104",
+        "id": "790104"
+      },
+      {
+        "name": "790105",
+        "id": "790105"
+      },
+      {
+        "name": "790106",
+        "id": "790106"
+      }
     ]
   },
-
   "addresses": [
     {
       "name": "Andhra Pradesh",
       "cities": [
         {
           "name": "Hyderabad",
-          "postalCodes": ["500001", "500002", "500003"]
+          "postalCodes": [
+            "500001",
+            "500002",
+            "500003"
+          ]
         },
         {
           "name": "Visakhapatnam",
-          "postalCodes": ["530001", "530002", "530003"]
+          "postalCodes": [
+            "530001",
+            "530002",
+            "530003"
+          ]
         }
       ]
     },
@@ -251,11 +468,19 @@
       "cities": [
         {
           "name": "Mumbai",
-          "postalCodes": ["400001", "400002", "400003"]
+          "postalCodes": [
+            "400001",
+            "400002",
+            "400003"
+          ]
         },
         {
           "name": "Pune",
-          "postalCodes": ["411001", "411002", "411003"]
+          "postalCodes": [
+            "411001",
+            "411002",
+            "411003"
+          ]
         }
       ]
     }

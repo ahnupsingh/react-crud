@@ -17,8 +17,6 @@ import { EMPLOYEE_FORM } from "../../config/url";
 const Dashboard = () => {
   const [employees, setEmployees] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [isAdding, setIsAdding] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
   const { data, isLoading, error, refetch } = useQuery("employees", EmployeeApi.getAllEmployees, employeesQueryConfig);
   const navigate = useNavigate();
   const { mode, setMode } = useNavigation();
@@ -77,15 +75,6 @@ const Dashboard = () => {
               employees={data.data}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
-              setIsAdding={setIsAdding}
-              setIsEditing={setIsEditing}
-            />
-          )}
-          {(isAdding || isEditing) && (
-            <EmployeeForm
-              employees={employees}
-              selectedEmployee={selectedEmployee}
-              setEmployees={setEmployees}
             />
           )}
         </div>

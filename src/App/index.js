@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import {ReactQueryDevtools} from 'react-query/devtools';
 import Dashboard from '../views/dashboard';
 import { useAuth } from '../context/AuthProvider';

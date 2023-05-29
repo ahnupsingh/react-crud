@@ -10,8 +10,15 @@ import EmployeeForm from "./views/employees/Form";
 import { Profile } from "./views/employees/Profile";
 import { AuthProvider } from "./context/AuthProvider";
 import { NavigationProvider } from "./context/NavigationProvider";
-import { EMPLOYEE_FORM, EMPLOYEE_LIST_URL, FEED_URL, LOGIN_URL, PROFILE_URL, ROOT_URL } from "./config/url";
-import { QueryClient, QueryClientProvider } from 'react-query';
+import {
+  EMPLOYEE_FORM,
+  EMPLOYEE_LIST_URL,
+  FEED_URL,
+  LOGIN_URL,
+  PROFILE_URL,
+  ROOT_URL,
+} from "./config/url";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 let user = localStorage.getItem("user");
