@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import AuthApi from "../../../api/auth";
 import Swal from "sweetalert2";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import { PROFILE_URL, ROOT_URL } from "../../../config/url";
+import { PROFILE_URL, ROOT_URL, SIGNUP_URL } from "../../../config/url";
 
 const LoginForm = () => {
   const {
@@ -27,7 +28,7 @@ const LoginForm = () => {
     localStorage.setItem("user =---->", JSON.stringify(data));
 
     // call an API to login
-      // when api gives success response, navigate to root url
+    // when api gives success response, navigate to root url
     AuthApi.login(data).then((result) => {
       console.log("signin -> ", result);
       if (result.status === 200) {
@@ -71,6 +72,9 @@ const LoginForm = () => {
         });
       }
     });
+  };
+  const handleNavigate = () => {
+    navigate(SIGNUP_URL);
   };
 
   return (
@@ -116,12 +120,22 @@ const LoginForm = () => {
           Forgot password?
         </label>
       </div>
-      <button
-        className="btn btn-lg btn-primary btn-block text-uppercase"
-        type="submit"
-      >
-        Sign in
-      </button>
+
+      <div className="d-flex justify-content-between">
+        <button
+          className="btn btn-lg btn-primary btn-block text-uppercase"
+          type="submit"
+        >
+          Sign in
+        </button>
+        <button
+          className="btn btn-lg btn-primary btn-block text-uppercase"
+          onClick={handleNavigate}
+        >
+          Sign Up
+        </button>
+      </div>
+
       <hr class="my-4" />
       <div className="social-login">
         <button

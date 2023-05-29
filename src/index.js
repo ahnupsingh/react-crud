@@ -5,13 +5,24 @@ import App from "./App";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Feed from "./views/feed";
 import Login from "./views/auth/Login";
+import SignUp from "./views/auth/SignUp/SignUp";
 import Dashboard from "./views/dashboard";
 import EmployeeForm from "./views/employees/Form";
 import { Profile } from "./views/employees/Profile";
 import { AuthProvider } from "./context/AuthProvider";
 import { NavigationProvider } from "./context/NavigationProvider";
-import { EMPLOYEE_FORM, EMPLOYEE_LIST_URL, FEED_URL, LOGIN_URL, PROFILE_URL, ROOT_URL } from "./config/url";
-import { QueryClient, QueryClientProvider } from 'react-query';
+import {
+  EMPLOYEE_FORM,
+  EMPLOYEE_LIST_URL,
+  FEED_URL,
+  LOGIN_URL,
+  PROFILE_URL,
+  ROOT_URL,
+  SIGNUP_URL,
+  BLOG_URL,
+} from "./config/url";
+import { QueryClient, QueryClientProvider } from "react-query";
+import Blog from "./views/auth/Blog/Blog";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 let user = localStorage.getItem("user");
@@ -31,6 +42,8 @@ root.render(
               <Route path={FEED_URL} element={<Feed />} />
               <Route path={PROFILE_URL} element={<Profile />} />
               <Route path={LOGIN_URL} element={<Login />} />
+              <Route path={SIGNUP_URL} element={<SignUp />} />
+              <Route path={BLOG_URL} element={<Blog />} />
             </Routes>
           </Router>
         </QueryClientProvider>
