@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { ROOT_URL } from "../../../config/url";
+import Button from "../../../components/fields/Button";
 
 const LoginForm = () => {
   const {
@@ -122,18 +123,20 @@ const LoginForm = () => {
       </button>
       <hr class="my-4" />
       <div className="social-login">
-        <button
-          class="btn btn-lg btn-google btn-block text-uppercase"
+        <Button
           type="submit"
+          className="btn btn-lg btn-google btn-block text-uppercase"
+          text="Sign in with Google"
+          icon="fab fa-google"
         >
-          <i class="fab fa-google mr-2"></i> Sign in with Google
-        </button>
-        <button
-          class="btn btn-lg btn-facebook btn-block text-uppercase"
+        </Button>
+        <Button
           type="submit"
+          className="btn btn-lg btn-facebook btn-block text-uppercase"
+          text="Sign in with Facebook"
+          icon="fab fa-facebook-f"
         >
-          <i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook
-        </button>
+        </Button>
       </div>
     </form>
   );
