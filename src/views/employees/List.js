@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import Table from '../../layouts/Table';
 
-const List = ({ employees, handleEdit, handleDelete, setIsAdding, setIsEditing }) => {
+const List = ({ employees, handleEdit, handleDelete }) => {
 
   // const formatter = new Intl.NumberFormat('en-US', {
   //   style: 'currency',
@@ -50,8 +50,6 @@ const List = ({ employees, handleEdit, handleDelete, setIsAdding, setIsEditing }
             className="striped-table"
             onEdit={handleEdit}
             onDelete={handleDelete}
-            onIsAdding={setIsAdding}
-            onIsEditing={setIsEditing}
       />
     </div>
   );
