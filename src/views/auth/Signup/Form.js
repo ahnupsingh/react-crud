@@ -15,15 +15,7 @@ const SignupForm = () => {
   } = useForm();
   //   const { user, setUser } = useAuth();
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    phonenumber: "",
-    address: "",
-    profilephoto: "",
-    password: "",
-  });
+  const [user, setUser] = useAuth();
   //   useEffect(() => {
   //     if (user) {
   //       console.log("user", user);

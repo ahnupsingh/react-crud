@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import Header from "../../components/Navbar";
 import "./feed.scss";
 import AuthApi from "../../api/auth";
 import { Link } from "react-router-dom";
 
 const Feed = () => {
-  const [user, setUser] = useState({
-    title: "",
-    description: "",
-    createdAt: "",
-    workType: "",
-    address: "",
-  });
+  const { data, isLoading, isError, error, refetch } = useQuery(
+    "feed",
+    AuthApi.getBlog
+  );
+  console.log(data);
+  if (isLoading) {
+    return <h2>Loading....</h2>;
+  }
+  if (isError) {
+    return <h2>{error.message}</h2>;
+  }
 
-  const [feed, setFeed] = useState();
+  // const [feed, setFeed] = useState();
 
-  useEffect(() => {
-    async function getData() {
-      const result = await AuthApi.getBlog(user);
-      console.log(result);
-      console.log(result.data);
-      setFeed(result.data);
-    }
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   async function getData() {
+  //     const result = await AuthApi.getBlog(user);
+  //     console.log(result);
+  //     console.log(result.data);
+  //     setFeed(result.data);
+  //   }
+  //   getData();
+  // }, []);
 
   return (
     <>
@@ -269,7 +274,7 @@ const Feed = () => {
             </div>
           </div>
 
-          {feed?.map((feed) => (
+          {data?.data.map((feed) => (
             <div className="col-lg-4 col-md-6 col-sm-6">
               <div className="category mb-30">
                 <div className="job">
