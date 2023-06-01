@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import AuthApi from "../../api/auth";
 import Swal from "sweetalert2";
+import { useAuth } from "../../context/AuthProvider";
 import { generateId } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import { FEED_URL } from "../../config/url";
@@ -14,14 +15,8 @@ const BlogForm = () => {
   } = useForm();
 
   const navigate = useNavigate();
-  const [blog, setBlog] = useState({
-    title: "",
-    description: "",
-    type: "",
-    location: "",
-    workType: "",
-    createdAt: "",
-  });
+ 
+  const { user, setUser } = useAuth();
 
   const onSubmit = (data) => {
     console.log("Invalid data", data);
@@ -32,7 +27,7 @@ const BlogForm = () => {
       if (result.status === 201) {
         console.log(result.data);
         localStorage.setItem("employees_data", JSON.stringify(data));
-        setBlog(newBlog);
+        setUser(newBlog);
         navigate(FEED_URL);
         Swal.fire({
           icon: "success",

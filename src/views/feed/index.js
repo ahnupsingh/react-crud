@@ -2,25 +2,18 @@ import React,{useState, useEffect} from 'react';
 import Header from '../../components/Navbar';
 import AuthApi from "../../api/auth";
 import './feed.scss';
-import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+import Spinner from "../../layouts/Spinner";
 
 const Feed = () => {
 
-    const [user, setUser] =useState({title:"", description:"", createdAt:"", workType:"", location:""})
-
-    const [feed, setFeed] = useState();
-    // const { data, isLoading, error, refetch } = useQuery("feed", AuthApi.getBlog);
-    useEffect(() => {
-        async function getBooking() {
-            const result =  await AuthApi.getBlog(user)
-            console.log("result",result)
-            console.log(result.data);
-            setFeed(result.data);
-            
+    
+    const { data, isLoading, error, refetch } = useQuery("feed", AuthApi.getBlog);
+    console.log("useQuery",data)
+        if(isLoading){
+           return <Spinner></Spinner>
         }
-        getBooking();
-    }, []);
 
   return (
     <>
@@ -199,8 +192,7 @@ const Feed = () => {
                     </div>
                 </div>
             </div>
-
-            {feed?.map((feed) => (
+            {data?.data.map((feed) => (
             <div className="col-lg-4 col-md-6 col-sm-6">
                 <div className="category mb-30">
                     <div className="job">

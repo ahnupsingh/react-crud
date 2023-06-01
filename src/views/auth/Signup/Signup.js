@@ -7,7 +7,7 @@ import { useAuth } from "../../../context/AuthProvider";
 import InputField from "../../../components/fields/InputField";
 import { useNavigate } from "react-router-dom";
 import { ROOT_URL, LOGIN_URL } from "../../../config/url";
-import axios from "axios";
+import { useMutation } from "react-query";
 const SignupForm = () => {
   const {
     register,
@@ -16,14 +16,20 @@ const SignupForm = () => {
   } = useForm();
 
   const navigate = useNavigate();
-  const [user, setUser] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    password: "",
-    profilePhoto: "",
-  });
+  const { user, setUser } = useAuth();
 
+  // const addUser = (ad) => {
+  //   AuthApi.signup(ad);
+  // };
+
+ 
+  // const { mutate: addBlog } = useMutation(addUser());
+    
+
+  // const onSubmit = (data) => {
+  //   const blog = { data };
+  //   addBlog(blog);
+  // };
 
   const onSubmit = (data) => {
     console.log("Invalid data", data);
@@ -76,7 +82,7 @@ const SignupForm = () => {
         {errors.phone && <span style={{ color: "red" }}>Required*</span>}
       </div>
       <div>
-      <label>E-mail:</label>
+        <label>E-mail:</label>
         <input
           type="email"
           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}

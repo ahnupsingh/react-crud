@@ -17,12 +17,12 @@ const LoginForm = () => {
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      console.log("user", user);
-      // navigate(PROFILE_URL);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     console.log("user", user);
+  //     // navigate(PROFILE_URL);
+  //   }
+  // }, [user]);
 
 
   
