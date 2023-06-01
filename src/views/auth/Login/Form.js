@@ -29,7 +29,7 @@ const LoginForm = () => {
     console.log("user =---->", JSON.stringify(data));
 
     // call an API to login
-      // when api gives success response, navigate to root url
+    // when api gives success response, navigate to root url
     AuthApi.login(data).then((result) => {
       console.log("signin -> ", result);
       if (result.status === 200) {
@@ -82,7 +82,7 @@ const LoginForm = () => {
           id="email"
           type="email"
           register={register}
-          validationSchema={{ 
+          validationSchema={{
             pattern: /^\S+@\S+$/i,
             required: "Email is required",
           }}
@@ -96,12 +96,12 @@ const LoginForm = () => {
           id="password"
           type="password"
           register={register}
-          validationSchema={{ 
+          validationSchema={{
             required: "Password is required",
             minLength: {
               value: 3,
-              message: "Please enter a minimum of 6 characters"
-            }
+              message: "Please enter a minimum of 6 characters",
+            },
           }}
           placeholder="Password"
           errors={errors}
@@ -126,15 +126,13 @@ const LoginForm = () => {
           className="btn btn-lg btn-google btn-block text-uppercase"
           text="Sign in with Google"
           icon="fab fa-google"
-        >
-        </Button>
+        ></Button>
         <Button
           type="submit"
           className="btn btn-lg btn-facebook btn-block text-uppercase"
           text="Sign in with Facebook"
           icon="fab fa-facebook-f"
-        >
-        </Button>
+        ></Button>
       </div>
     </form>
   );
