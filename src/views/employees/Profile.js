@@ -1,21 +1,61 @@
 import "./profile.scss";
 import NavBar from '../../components/Navbar';
 import Logout from "../auth/Logout";
+import { useAuth } from "../../context/AuthProvider";
+import InputField from "../../components/fields/InputField"
+import ProfileApi from "../../api/profile";
+import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 
 export const Profile = () => {
+  const { user, setUser } = useAuth();
+  console.log("user", user)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({...user});
+
+  const onSubmit = (data) => {
+    console.log('data', data);
+    ProfileApi.edit(user.id, data).then((result) => {
+      if (result.status === 200) {
+        localStorage.setItem("profile edit", JSON.stringify(result.data));
+        setUser(result.data);
+
+        Swal.fire({
+          icon: "success",
+          title: "Added!",
+          text: `${data.firstName} ${data.lastName}'s data has been Added.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          icon: "failure",
+          title: "Failed!",
+          text: `${data.name} data has not been updated.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   return (
     <>
     <NavBar />
     <div className="container profile-container rounded bg-white mt-5 mb-5">
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="row">
         <div className="col-md-3 border-right">
           <div className="d-flex flex-column align-items-center text-center p-3 py-5">
             <img
               className="rounded-circle my-5"
-              src="https://i.imgur.com/C4egmYM.jpg"
+              src={user.profilePhoto != "" ? user.profilePhoto : "https://i.imgur.com/C4egmYM.jpg" }
             />
-            <span className="font-weight-bold">Amelly</span>
-            <span className="text-black-50">amelly12@bbb.com</span>
+            <span className="font-weight-bold">{user.name}</span>
+            <span className="text-black-50">{user.email}</span>
             <span className="mt-5"><Logout/></span>
           </div>
         </div>
@@ -25,118 +65,70 @@ export const Profile = () => {
               <h4 className="text-right">Profile</h4>
             </div>
             <div className="row mt-2">
-              <div className="col-md-6">
-                <label className="labels">Name</label>
-                <input
-                  type="text"
-                  className="form-control"
+                <InputField
+                  id = 'name'
+                  label="Name"
                   placeholder="first name"
-                  value=""
-                />
-              </div>
-              <div className="col-md-6">
-                <label className="labels">Surname</label>
-                <input
                   type="text"
-                  className="form-control"
-                  value=""
-                  placeholder="surname"
-                />
-              </div>
+                  className="form-contol"
+                  register={register}
+                  validationSchema={{ 
+                    pattern: /^\S+@\S+$/i,
+                    required: "Name is required",
+                  }}
+                  errors={errors}
+                  required
+                ></InputField>
             </div>
             <div className="row mt-3">
               
               <div className="col-md-12">
-                <label className="labels">PhoneNumber</label>
-                <input
+              <InputField
+                  id = 'email'
+                  label="Email"
+                  placeholder="email"
                   type="text"
-                  className="form-control"
-                  placeholder="enter phone number"
-                  value=""
-                />
+                  className="form-contol"
+                  register={register}
+                  validationSchema={{ 
+                    pattern: /^\S+@\S+$/i,
+                    required: "Email is required",
+                  }}
+                  errors={errors}
+                  required
+                ></InputField>
               </div>
               <div className="col-md-12">
-                <label className="labels">Address</label>
-                <input
+              <InputField
+                  id = 'phone'
+                  label="Phone"
+                  placeholder="phone"
                   type="text"
-                  className="form-control"
-                  placeholder="enter address"
-                  value=""
-                />
+                  className="form-contol"
+                  register={register}
+                  validationSchema={{ 
+                    pattern: /^\S+@\S+$/i,
+                    required: "Phone is required",
+                  }}
+                  errors={errors}
+                  required
+                ></InputField>
               </div>
-              <div className="col-md-12">
-                <label className="labels">Email ID</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="enter email id"
-                  value=""
-                />
-              </div>
-              <div className="col-md-12">
-                <label className="labels">Education</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="education"
-                  value=""
-                />
-              </div>
+
             </div>
             <div className="row mt-3">
-              <div className="col-md-6">
-                <label className="labels">Country</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="country"
-                  value=""
-                />
-              </div>
-              <div className="col-md-6">
-                <label className="labels">State/Region</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value=""
-                  placeholder="state"
-                />
-              </div>
+
             </div>
             <div className="mt-5 text-center">
-              <button className="btn btn-primary profile-button" type="button">
+              <button type="submit" 
+                className="btn btn-primary profile-button">
                 Save Profile
               </button>
             </div>
           </div>
         </div>
-        <div className="col-md-4">
-          <div className="p-3 py-5">
-            <div className="d-flex justify-content-between align-items-center mb-3">
-                <h4 className="text-right">Experience</h4>
-            </div>
-            <div className="col-md-12">
-              <label className="labels">Experience in Designing</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="experience"
-                value=""
-              />
-            </div>
-            <br />
-            <div className="col-md-12">
-              <label className="labels">Additional Details</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="additional details"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
       </div>
+    </form>
     </div>
     </>
   );

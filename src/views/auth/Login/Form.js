@@ -4,8 +4,9 @@ import AuthApi from "../../../api/auth";
 import Swal from "sweetalert2";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import { ROOT_URL } from "../../../config/url";
 import Button from "../../../components/fields/Button";
+import { PROFILE_URL } from "../../../config/url";
+import InputField from "../../../components/fields/InputField";
 
 const LoginForm = () => {
   const {
@@ -19,16 +20,18 @@ const LoginForm = () => {
   useEffect(() => {
     if (user) {
       console.log("user", user);
-      navigate(ROOT_URL);
+      navigate(PROFILE_URL);
     }
   }, [user]);
 
   const onSubmit = (data) => {
-    setUser(data);
-    localStorage.setItem("user", JSON.stringify(data));
+    // setUser(data);
+    console.log("user =---->", JSON.stringify(data));
 
-    AuthApi.signin(data).then((result) => {
-      console.log("signin", result);
+    // call an API to login
+      // when api gives success response, navigate to root url
+    AuthApi.login(data).then((result) => {
+      console.log("signin -> ", result);
       if (result.status === 200) {
         Swal.fire({
           timer: 1500,
@@ -37,12 +40,12 @@ const LoginForm = () => {
             Swal.showLoading();
           },
           willClose: () => {
-            localStorage.setItem(
-              "access_token",
-              result.data.tokens.access_token
-            );
-            localStorage.setItem("user", JSON.stringify(data));
-            setUser(data);
+            // localStorage.setItem(
+            //   "access_token",
+            //   result.data.tokens.access_token
+            // );
+            localStorage.setItem("user", JSON.stringify(result.data));
+            setUser(result.data);
 
             Swal.fire({
               icon: "success",
@@ -75,40 +78,35 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
       <div>
-        <input
-          type="text"
-          {...register("name", { required: true })}
-          placeholder="Name"
-        />
-        {errors.name && <span>This field is required</span>}
-      </div>
-      <div>
-        <input
+        <InputField
+          id="email"
           type="email"
-          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+          register={register}
+          validationSchema={{ 
+            pattern: /^\S+@\S+$/i,
+            required: "Email is required",
+          }}
           placeholder="Email"
+          errors={errors}
+          required
         />
-        {errors.email && (
-          <span>
-            {errors.email.type === "required"
-              ? "This field is required"
-              : "Invalid email address"}
-          </span>
-        )}
       </div>
       <div>
-        <input
+        <InputField
+          id="password"
           type="password"
-          {...register("password", { required: true, minLength: 6 })}
+          register={register}
+          validationSchema={{ 
+            required: "Password is required",
+            minLength: {
+              value: 3,
+              message: "Please enter a minimum of 6 characters"
+            }
+          }}
           placeholder="Password"
+          errors={errors}
+          required
         />
-        {errors.password && (
-          <span>
-            {errors.password.type === "required"
-              ? "This field is required"
-              : "Password must have at least 6 characters"}
-          </span>
-        )}
       </div>
       <div className="d-flex custom-control custom-checkbox mb-3">
         <label className="custom-control-label" for="customCheck1">

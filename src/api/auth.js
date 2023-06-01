@@ -20,7 +20,10 @@ class AuthApi {
 
     static getBlog = (blog) => {
         return axios.get(`${BASE_URL}/blog`, blog)
+    }
 
+    static signin = (data) => {
+        return axios.post(`${base}/auth/signin`,data)
     }
 
     static Register = (data) => {
