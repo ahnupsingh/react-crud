@@ -5,7 +5,8 @@ import Swal from "sweetalert2";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/fields/Button";
-import { PROFILE_URL, ROOT_URL } from "../../../config/url";
+import { PROFILE_URL } from "../../../config/url";
+import InputField from "../../../components/fields/InputField";
 
 const LoginForm = () => {
   const {
@@ -25,7 +26,7 @@ const LoginForm = () => {
 
   const onSubmit = (data) => {
     // setUser(data);
-    localStorage.setItem("user =---->", JSON.stringify(data));
+    console.log("user =---->", JSON.stringify(data));
 
     // call an API to login
       // when api gives success response, navigate to root url
@@ -76,41 +77,36 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
-      {/* <div>
-        <input
-          type="text"
-          {...register("name", { required: true })}
-          placeholder="Name"
-        />
-        {errors.name && <span>This field is required</span>}
-      </div> */}
       <div>
-        <input
+        <InputField
+          id="email"
           type="email"
-          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+          register={register}
+          validationSchema={{ 
+            pattern: /^\S+@\S+$/i,
+            required: "Email is required",
+          }}
           placeholder="Email"
+          errors={errors}
+          required
         />
-        {errors.email && (
-          <span>
-            {errors.email.type === "required"
-              ? "This field is required"
-              : "Invalid email address"}
-          </span>
-        )}
       </div>
       <div>
-        <input
+        <InputField
+          id="password"
           type="password"
-          {...register("password", { required: true, minLength: 6 })}
+          register={register}
+          validationSchema={{ 
+            required: "Password is required",
+            minLength: {
+              value: 3,
+              message: "Please enter a minimum of 6 characters"
+            }
+          }}
           placeholder="Password"
+          errors={errors}
+          required
         />
-        {errors.password && (
-          <span>
-            {errors.password.type === "required"
-              ? "This field is required"
-              : "Password must have at least 6 characters"}
-          </span>
-        )}
       </div>
       <div className="d-flex custom-control custom-checkbox mb-3">
         <label className="custom-control-label" for="customCheck1">

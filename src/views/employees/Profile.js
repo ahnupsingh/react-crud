@@ -71,8 +71,13 @@ export const Profile = () => {
                   placeholder="first name"
                   type="text"
                   className="form-contol"
+                  register={register}
+                  validationSchema={{ 
+                    pattern: /^\S+@\S+$/i,
+                    required: "Name is required",
+                  }}
                   errors={errors}
-                  {...register("name", { required: true })}
+                  required
                 ></InputField>
             </div>
             <div className="row mt-3">
@@ -84,19 +89,15 @@ export const Profile = () => {
                   placeholder="email"
                   type="text"
                   className="form-contol"
-                  errors={{}}
-                  {...register("email", { required: true })}
+                  register={register}
+                  validationSchema={{ 
+                    pattern: /^\S+@\S+$/i,
+                    required: "Email is required",
+                  }}
+                  errors={errors}
+                  required
                 ></InputField>
               </div>
-              {/* <div className="col-md-12">
-                <label className="labels">Address</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="enter address"
-                  value=""
-                />
-              </div> */}
               <div className="col-md-12">
               <InputField
                   id = 'phone'
@@ -104,8 +105,13 @@ export const Profile = () => {
                   placeholder="phone"
                   type="text"
                   className="form-contol"
-                  errors={{}}
-                  {...register("phone", { required: true })}
+                  register={register}
+                  validationSchema={{ 
+                    pattern: /^\S+@\S+$/i,
+                    required: "Phone is required",
+                  }}
+                  errors={errors}
+                  required
                 ></InputField>
               </div>
 
