@@ -22,7 +22,7 @@ const LoginForm = () => {
       console.log("user", user);
       navigate(PROFILE_URL);
     }
-  }, [user]);
+  }, [user, navigate]);
 
   const onSubmit = (data) => {
     // setUser(data);
@@ -109,7 +109,7 @@ const LoginForm = () => {
         />
       </div>
       <div className="d-flex custom-control custom-checkbox mb-3">
-        <label className="custom-control-label" for="customCheck1">
+        <label className="custom-control-label" htmlFor="customCheck1">
           Forgot password?
         </label>
       </div>
@@ -119,7 +119,7 @@ const LoginForm = () => {
       >
         Sign in
       </button>
-      <hr class="my-4" />
+      <hr className="my-4" />
       <div className="social-login">
         <Button
           type="submit"
