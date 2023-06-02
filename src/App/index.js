@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {ReactQueryDevtools} from 'react-query/devtools';
-import Dashboard from '../views/dashboard';
-import { useAuth } from '../context/AuthProvider';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ReactQueryDevtools } from "react-query/devtools";
+import Dashboard from "../views/dashboard";
+import { useAuth } from "../context/AuthProvider";
 
 const App = () => {
   const navigate = useNavigate();
   const { user, setUser } = useAuth();
 
   useEffect(() => {
-    if(user == undefined){
-      navigate('/login');
+    if (user == undefined) {
+      navigate("/login");
     }
-  }, [navigate]);
+  }, [navigate, user]);
 
   return (
     <>
-        {user && <Dashboard />}
-        <ReactQueryDevtools initialIsOpen={false} position="bottom-right"/>
+      {user && <Dashboard />}
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </>
   );
 };
