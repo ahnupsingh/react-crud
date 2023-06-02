@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../../components/fields/Button";
 import { PROFILE_URL } from "../../../config/url";
 import InputField from "../../../components/fields/InputField";
+import { Input } from "../../../components/inputs";
+import { classnames } from "../../../utils";
 
 const LoginForm = () => {
   const {
@@ -16,6 +18,7 @@ const LoginForm = () => {
   } = useForm();
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
+  console.log(errors);
 
   useEffect(() => {
     if (user) {
@@ -29,7 +32,7 @@ const LoginForm = () => {
     console.log("user =---->", JSON.stringify(data));
 
     // call an API to login
-      // when api gives success response, navigate to root url
+    // when api gives success response, navigate to root url
     AuthApi.login(data).then((result) => {
       console.log("signin -> ", result);
       if (result.status === 200) {
@@ -78,34 +81,30 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
       <div>
-        <InputField
+        <Input
+          className={classnames({ "has-error": !!errors["email"] })}
           id="email"
           type="email"
           register={register}
-          validationSchema={{ 
-            pattern: /^\S+@\S+$/i,
-            required: "Email is required",
-          }}
           placeholder="Email"
           errors={errors}
-          required
         />
       </div>
       <div>
-        <InputField
+        <Input
           id="password"
           type="password"
+          className={classnames({ "has-error": !!errors["password"] })}
           register={register}
-          validationSchema={{ 
+          validationOptions={{
             required: "Password is required",
             minLength: {
-              value: 3,
-              message: "Please enter a minimum of 6 characters"
-            }
+              value: 8,
+              message: "Please enter a minimum of 8 characters",
+            },
           }}
           placeholder="Password"
           errors={errors}
-          required
         />
       </div>
       <div className="d-flex custom-control custom-checkbox mb-3">
@@ -126,15 +125,13 @@ const LoginForm = () => {
           className="btn btn-lg btn-google btn-block text-uppercase"
           text="Sign in with Google"
           icon="fab fa-google"
-        >
-        </Button>
+        ></Button>
         <Button
           type="submit"
           className="btn btn-lg btn-facebook btn-block text-uppercase"
           text="Sign in with Facebook"
           icon="fab fa-facebook-f"
-        >
-        </Button>
+        ></Button>
       </div>
     </form>
   );
