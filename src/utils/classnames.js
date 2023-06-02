@@ -12,11 +12,10 @@ export function classnames(...args) {
   return classes.trimEnd();
 }
 
-/*
+/**
  * reduce object to string
  * ```js
  * _reduceObjectToString({foo: true, bar: false, bazz: true}) -> "foo bazz"
- * ```
  * `
  */
 function _reduceObjectToString(obj) {
