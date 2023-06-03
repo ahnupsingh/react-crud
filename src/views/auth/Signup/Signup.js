@@ -7,7 +7,7 @@ import { useAuth } from "../../../context/AuthProvider";
 import InputField from "../../../components/fields/InputField";
 import { useNavigate } from "react-router-dom";
 import { ROOT_URL, LOGIN_URL } from "../../../config/url";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 const SignupForm = () => {
   const {
     register,
@@ -18,40 +18,41 @@ const SignupForm = () => {
   const navigate = useNavigate();
   const { user, setUser } = useAuth();
 
-  const { data, isLoading, error, refetch=(data)=>{} } = useQuery("signup", AuthApi.createBlog, {enabled: false});
+  const queryClient = useQueryClient();
 
-
-  const onSubmit = (userData) => {
-    const newUser = userData;
-    newUser.id = generateId();
-    const newData = refetch(userData);
-
-    console.log("Data ---> ", data);
-    if(data.status === 201){
-      console.log("Data data ---> ", data.data);
-      localStorage.setItem("employees_data", JSON.stringify(data));
-      setUser(newData);
+  const { mutate, isLoading } = useMutation(AuthApi.createBlog, {
+    onSuccess: data => {
+      const newUser = data.data;
+      newUser.id = generateId();
+      console.log("Data data ---> ", newUser);
+      localStorage.setItem("employees_data", JSON.stringify(newUser));
+      setUser(newUser);
       navigate(LOGIN_URL);
       Swal.fire({
         icon: "success",
         title: "Added!",
-        text: `${data.name} 's data has been Added.`,
+        text: `${newUser.name} 's data has been Added.`,
         showConfirmButton: false,
         timer: 1500,
       });
-    }else {
+    },
+    onError: () => {
+      alert("there was an error")
       Swal.fire({
         icon: "failure",
         title: "Failed!",
-        text: `${data.name} 's data has not been Added.`,
+        text: `Data has not been Added.`,
         showConfirmButton: false,
         timer: 1500,
       });
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries('employees');
     }
-  };
+  });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
+    <form onSubmit={handleSubmit(mutate)} className="form-signin">
       <div>
         <label>Name:</label>
         <input
