@@ -24,7 +24,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 let user = localStorage.getItem("user");
-user = JSON.parse(user);
+user = JSON.parse(user || "{}");
 const queryClient = new QueryClient();
 
 root.render(

@@ -1,5 +1,9 @@
 ### Task 1
+    - Signup implementation
+
 ### Task 2
+    - My blogs
+    - Make use of common components
 
 ### Task 3
 
@@ -20,4 +24,12 @@ UI
     - setCurrentPage(currentPage +- 1)
     - page in APi
     - make use of refetch function
+
+
+### Task 4
+
+- Implement react-table
+- Categorize feed page
+- Paginate feed page
+
 
