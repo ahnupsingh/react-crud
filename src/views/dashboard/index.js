@@ -19,7 +19,11 @@ const Dashboard = () => {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const { data, isLoading, error, refetch } = useQuery("employees", EmployeeApi.getAllEmployees, employeesQueryConfig);
+  const { data, isLoading, error, refetch } = useQuery(
+    "employees",
+    EmployeeApi.getAllEmployees,
+    employeesQueryConfig
+  );
   const navigate = useNavigate();
   const { mode, setMode } = useNavigation();
 

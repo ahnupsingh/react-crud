@@ -5,7 +5,6 @@ import App from "./App";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Feed from "./views/feed";
 import Login from "./views/auth/Login";
-
 import Dashboard from "./views/dashboard";
 import EmployeeForm from "./views/employees/Form";
 import { Profile } from "./views/employees/Profile";
