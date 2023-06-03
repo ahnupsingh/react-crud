@@ -61,7 +61,7 @@ const SignupForm = () => {
         <input
           type="text"
           {...register("name", { required: true })}
-          placeholder="Name"
+          placeholder="Name."
         />
         {errors.name && <span style={{ color: "red" }}>Required*</span>}
       </div>
