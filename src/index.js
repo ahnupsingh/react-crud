@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./App";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Feed from "./views/feed";
 import Login from "./views/auth/Login";
 import Dashboard from "./views/dashboard";
@@ -11,6 +11,7 @@ import { Profile } from "./views/employees/Profile";
 import { AuthProvider } from "./context/AuthProvider";
 import { NavigationProvider } from "./context/NavigationProvider";
 import {
+  COMPONENT_URL,
   EMPLOYEE_FORM,
   EMPLOYEE_LIST_URL,
   FEED_URL,
@@ -19,6 +20,10 @@ import {
   ROOT_URL,
 } from "./config/url";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ComponentView } from "./views/components";
+import { InputView } from "./views/components/Input";
+import { CheckboxView } from "./views/components/Checkbox";
+import { RadioView } from "./views/components/Radio/input";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 let user = localStorage.getItem("user");
@@ -38,6 +43,11 @@ root.render(
               <Route path={FEED_URL} element={<Feed />} />
               <Route path={PROFILE_URL} element={<Profile />} />
               <Route path={LOGIN_URL} element={<Login />} />
+              <Route path={COMPONENT_URL.ROOT} element={<ComponentView />}>
+                <Route path={COMPONENT_URL.INPUT} element={<InputView />} />
+                <Route path={COMPONENT_URL.RADIO} element={<RadioView />} />
+                <Route path={COMPONENT_URL.CHECKBOX} element={<CheckboxView />} />
+              </Route>
             </Routes>
           </Router>
         </QueryClientProvider>
