@@ -18,8 +18,12 @@ const SignupForm = () => {
   const navigate = useNavigate();
   const { user, setUser } = useAuth();
 
-  const { data, isLoading, error, refetch=(data)=>{} } = useQuery("signup", AuthApi.createBlog, {enabled: false});
-
+  const {
+    data,
+    isLoading,
+    error,
+    refetch = (data) => {},
+  } = useQuery("signup", AuthApi.createBlog, { enabled: false });
 
   const onSubmit = (userData) => {
     const newUser = userData;
@@ -27,7 +31,7 @@ const SignupForm = () => {
     const newData = refetch(userData);
 
     console.log("Data ---> ", data);
-    if(data.status === 201){
+    if (data.status === 201) {
       console.log("Data data ---> ", data.data);
       localStorage.setItem("employees_data", JSON.stringify(data));
       setUser(newData);
@@ -39,7 +43,7 @@ const SignupForm = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-    }else {
+    } else {
       Swal.fire({
         icon: "failure",
         title: "Failed!",
@@ -66,7 +70,7 @@ const SignupForm = () => {
         <input
           type="number"
           {...register("phone", { required: true })}
-          placeholder="Phone Number"
+          placeholder="Phone Number."
         />
         {errors.phone && <span style={{ color: "red" }}>Required*</span>}
       </div>
