@@ -13,3 +13,8 @@ export const emailSchema = {
   },
   required: "email is required",
 };
+
+export function getDefaultValidationSchema(type) {
+  const lookup = { email: emailSchema, password: passwordSchema };
+  return lookup[type];
+}
