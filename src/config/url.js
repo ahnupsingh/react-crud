@@ -19,6 +19,8 @@ const COMPONENT_URL = {
   INPUT: "input",
 };
 
+const SIGNUP_URL = "/signup";
+
 export {
   COMPONENT_URL,
   EMPLOYEE_FORM,
@@ -27,4 +29,5 @@ export {
   LOGIN_URL,
   PROFILE_URL,
   ROOT_URL,
+  SIGNUP_URL,
 };

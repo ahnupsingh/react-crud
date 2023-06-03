@@ -5,6 +5,8 @@ import App from "./App";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Feed from "./views/feed";
 import Login from "./views/auth/Login";
+import Signup from "./views/auth/Signup/index";
+import CreateBlog from "./views/feed/CreateBlog";
 import Dashboard from "./views/dashboard";
 import EmployeeForm from "./views/employees/Form";
 import { Profile } from "./views/employees/Profile";
@@ -46,8 +48,13 @@ root.render(
               <Route path={COMPONENT_URL.ROOT} element={<ComponentView />}>
                 <Route path={COMPONENT_URL.INPUT} element={<InputView />} />
                 <Route path={COMPONENT_URL.RADIO} element={<RadioView />} />
-                <Route path={COMPONENT_URL.CHECKBOX} element={<CheckboxView />} />
+                <Route
+                  path={COMPONENT_URL.CHECKBOX}
+                  element={<CheckboxView />}
+                />
               </Route>
+              <Route path="/Signup" element={<Signup />} />
+              <Route path="/CreateBlog" element={<CreateBlog />} />
             </Routes>
           </Router>
         </QueryClientProvider>

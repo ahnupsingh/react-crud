@@ -3,12 +3,11 @@ import { useForm } from "react-hook-form";
 import AuthApi from "../../../api/auth";
 import Swal from "sweetalert2";
 import { useAuth } from "../../../context/AuthProvider";
-import { useNavigate } from "react-router-dom";
-import Button from "../../../components/fields/Button";
+import { Link, useNavigate } from "react-router-dom";
 import { PROFILE_URL } from "../../../config/url";
-import InputField from "../../../components/fields/InputField";
 import { Input } from "../../../components/inputs";
 import { classnames } from "../../../utils";
+import Button from "../../../components/fields/Button";
 
 const LoginForm = () => {
   const {
@@ -19,23 +18,23 @@ const LoginForm = () => {
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
   console.log(errors);
-
-  useEffect(() => {
-    if (user) {
-      console.log("user", user);
-      navigate(PROFILE_URL);
-    }
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (user) {
+  //     console.log("user", user);
+  //     // navigate(PROFILE_URL);
+  //   }
+  // }, [user]);
 
   const onSubmit = (data) => {
     // setUser(data);
-    console.log("user =---->", JSON.stringify(data));
+    localStorage.setItem("user =---->", JSON.stringify(data));
 
     // call an API to login
     // when api gives success response, navigate to root url
     AuthApi.login(data).then((result) => {
       console.log("signin -> ", result);
       if (result.status === 200) {
+        navigate(PROFILE_URL);
         Swal.fire({
           timer: 1500,
           showConfirmButton: false,
@@ -112,12 +111,18 @@ const LoginForm = () => {
           Forgot password?
         </label>
       </div>
-      <button
-        className="btn btn-lg btn-primary btn-block text-uppercase"
-        type="submit"
-      >
-        Sign in
-      </button>
+      <div style={{ display: "flex", gap: "1.5rem" }}>
+        <Button
+          className="btn-lg btn-primary btn-block text-uppercase"
+          type="submit"
+          text="SIGN IN"
+        />
+        <Link to="/Signup">
+          <button className="btn btn-lg btn-primary btn-block text-uppercase">
+            Sign up
+          </button>
+        </Link>
+      </div>
       <hr className="my-4" />
       <div className="social-login">
         <Button
