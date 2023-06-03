@@ -65,7 +65,7 @@ function Item({
         type="checkbox"
         id={id}
         checked={checked}
-        onChange={() => onChange(id)}
+        onChange={() => onChange?.(id)}
         disabled={disabled}
         {...rest}
       />

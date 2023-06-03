@@ -59,7 +59,7 @@ function Item({
         name={name}
         value={value}
         checked={checked}
-        onChange={() => onChange(id)}
+        onChange={() => onChange?.(id)}
         id={id}
       />
       <label

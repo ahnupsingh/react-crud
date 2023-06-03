@@ -49,4 +49,5 @@ export function Input({
 Input.defaultProps = {
   type: "text",
   id: generateId(),
+  errors: {},
 };
