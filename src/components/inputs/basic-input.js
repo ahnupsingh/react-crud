@@ -1,5 +1,5 @@
 import { classnames } from "../../utils/";
-import { emailSchema, passwordSchema } from "./validationSchemas";
+import { getDefaultValidationSchema } from "./validationSchemas";
 
 /**
  * Basic Input is just a input field with no any wrapper around with reach APIs.
@@ -36,7 +36,7 @@ import { emailSchema, passwordSchema } from "./validationSchemas";
  *  />
  * ```
  *
- *`onErrorClassName` is a css class that is injected to  component if `react-hook-form` throws error for that component 
+ * `onErrorClassName` is a css class that is injected to  component if `react-hook-form` throws error for that component
  */
 export function BasicInput({
   type,
@@ -55,12 +55,8 @@ export function BasicInput({
         [onErrorClassName ?? "has-error"]: !!errors[id],
       })}
       {...register?.(id, {
+        ...getDefaultValidationSchema(type),
         ...validationSchema,
-        ...(type === "password"
-          ? passwordSchema
-          : type === "email"
-          ? emailSchema
-          : undefined),
       })}
       {...rest}
     />
@@ -68,6 +64,5 @@ export function BasicInput({
 }
 BasicInput.defaultProps = {
   type: "text",
-  validationSchema: { required: false },
   errors: {},
 };
