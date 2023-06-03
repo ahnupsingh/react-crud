@@ -22,7 +22,7 @@ class AuthApi {
         })
     }
 
-    static getBlog = (blog, page, limit) => {
+    static getBlog = (blog, page=1, limit=10) => {
         return axios.get(`${BASE_URL}/blog?_page=${page}&_limit=${limit}`, blog)
     }
 
