@@ -5,11 +5,11 @@ const Button = (props) => {
     props;
   return (
     <button
-      className={className}
+      className={`btn ${className}`}
       type={type}
       {...rest}
     >
-      {icon && <i className={`${icon} mr-2`}></i>}{{text}}
+      {icon && <i className={`${icon} mr-2`}></i>}{text}
     </button>
   );
 };
