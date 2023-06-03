@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form"; 
 import { generateId } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../components/fields/InputField";
@@ -195,18 +195,103 @@ const EmployeeForm = ({selectedEmployee = null }) => {
           {errors.description && <span>This field is required</span>}
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-        <input
-          style={{ marginLeft: "12px" }}
-          className="muted-button"
-          type="button"
-          value="Cancel"
-          onClick={() => navigate("/")}
-        />
-      </form>
-    </Card>
+          <InputField
+            label="First name"
+            id="firstName"
+            type="text"
+            className="form-control"
+            {...register("title", { required: true })}
+            errors={errors}
+          ></InputField>
+
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            {...register("lastName", { required: true })}
+            id="lastName"
+            type="text"
+            className="form-control"
+          />
+          {errors.lastName && <span>This field is required</span>}
+
+          <label htmlFor="address">Address</label>
+          <div className="row">
+            <div className="col-12 col-md-4">
+              <SelectField
+                id="state"
+                label={<small>State</small>}
+                value={selectedState}
+                onChange={(e) => setSelectedState(e.target.value)}
+                className="form-control"
+                options={states}
+              />
+            </div>
+
+            <div className="col-12 col-md-4">
+              <SelectField
+                id={"city"}
+                label={<small>City</small>}
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.target.value)}
+                className="form-control"
+                options={cities}
+                disabled={!selectedState}
+              />
+            </div>
+
+            <div className="col-12 col-md-4">
+              <SelectField
+                id={"code"}
+                label={<small>Code</small>}
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.target.value)}
+                className="form-control"
+                options={postalCodes}
+                disabled={!selectedState}
+              />
+            </div>
+          </div>
+          <label htmlFor="email">email</label>
+          <input
+            {...register("email", { required: true })}
+            id="email"
+            type="text"
+            className="form-control"
+          />
+          {errors.email && <span>This field is required</span>}
+
+          <label htmlFor="salary">Salary ($)</label>
+          <input
+            {...register("salary", { required: true })}
+            id="salary"
+            type="text"
+            className="form-control"
+          />
+          {errors.salary && <span>This field is required</span>}
+
+          <div className="form-group">
+            <label for="description">Description</label>
+            <input
+              {...register("description", { required: true })}
+              id="description"
+              type="text"
+              className="form-control"
+              placeholder="Enter description"
+            />
+            {errors.description && <span>This field is required</span>}
+          </div>
+
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+          <input
+            style={{ marginLeft: "12px" }}
+            className="muted-button"
+            type="button"
+            value="Cancel"
+            onClick={() => navigate("/")}
+          />
+        </form>
+      </Card>
     </div>
   );
 };

@@ -20,7 +20,15 @@
         text-decoration: none;
         border-bottom: 3px solid transparent;
     }
-    
+    .w-100{
+        width: 100%;
+    }
+    .m-all-1rem{
+        margin: 1rem 1.5rem 1rem 1rem;
+    }
+    .f-right{
+        float : right;
+    }
     .topnav a:hover {
         color: black;
         border-bottom: 3px solid red;
