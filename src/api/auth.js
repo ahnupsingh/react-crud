@@ -6,8 +6,12 @@ class AuthApi {
         return axios.get(`/user/`, params)
     }
 
-    static signup = (params) => {
-        return axios.post(`/user/`, params)
+    static signup = (data) => {
+        return axios({
+            method: 'post',
+            url: `${BASE_URL}/user`,
+            data: data
+        })
     }
 
     static createBlog = (blog) => {
@@ -18,8 +22,8 @@ class AuthApi {
         })
     }
 
-    static getBlog = (blog) => {
-        return axios.get(`${BASE_URL}/blog`, blog)
+    static getBlog = (blog, page, limit) => {
+        return axios.get(`${BASE_URL}/blog?_page=${page}&_limit=${limit}`, blog)
     }
 
     static signin = (data) => {

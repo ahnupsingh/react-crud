@@ -91,6 +91,7 @@ const LoginForm = () => {
           }}
           placeholder="Email"
           errors={errors}
+          required
         />
       </div>
       <div>
@@ -115,12 +116,12 @@ const LoginForm = () => {
         </label>
       </div>
       <div style={{display:"flex", gap :"1.5rem"}}>
-      <button
-        className="btn btn-lg btn-primary btn-block text-uppercase"
-        type="submit"
-      >
-        Sign in
-      </button>
+
+      <Button
+      className="btn-lg btn-primary btn-block text-uppercase"
+      type="submit"
+      text="SIGN IN"
+      />
       <Link to="/Signup">
       <button className="btn btn-lg btn-primary btn-block text-uppercase" >
         Sign up

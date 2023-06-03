@@ -31,64 +31,24 @@
       "id": "b733170b-039c-44e8-8561-964d7b4cd986"
     },
     {
-      "id": "esfmrKp"
+      "name": "Anup",
+      "phone": "12312313",
+      "email": "anup.singh2071@gmail.com",
+      "password": "12312313",
+      "profilePhoto": {
+        "0": {}
+      },
+      "id": "a615e268-bd88-4f70-a9c6-822d92261cf5"
     },
     {
-      "id": "WQlLbUT"
-    },
-    {
-      "id": "4CD0RUd"
-    },
-    {
-      "id": "kXGtiql"
-    },
-    {
-      "id": "5vwPEny"
-    },
-    {
-      "id": "JE605SN"
-    },
-    {
-      "id": "VbF7_zY"
-    },
-    {
-      "id": "Ymv4oph"
-    },
-    {
-      "id": "1qF92zN"
-    },
-    {
-      "id": "EaFZyUq"
-    },
-    {
-      "id": "wua9PET"
-    },
-    {
-      "id": "0hLucRp"
-    },
-    {
-      "id": "lAfd6jj"
-    },
-    {
-      "id": "vP1tLNk"
-    },
-    {
-      "id": "6yMdnUR"
-    },
-    {
-      "id": "d3X9tOs"
-    },
-    {
-      "id": "Wl7oe9u"
-    },
-    {
-      "id": "DBl2nQl"
-    },
-    {
-      "id": "mHgx0Po"
-    },
-    {
-      "id": "bw9rB_I"
+      "name": "Anup Kumar Singh",
+      "phone": "699999",
+      "email": "anup.singh71@gmail.com",
+      "password": "123123123",
+      "profilePhoto": {
+        "0": {}
+      },
+      "id": "d2100bb1-009e-4ea3-b92a-66fb440987d1"
     }
   ],
   "blog": [

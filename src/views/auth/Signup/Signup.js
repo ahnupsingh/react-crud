@@ -7,7 +7,7 @@ import { useAuth } from "../../../context/AuthProvider";
 import InputField from "../../../components/fields/InputField";
 import { useNavigate } from "react-router-dom";
 import { ROOT_URL, LOGIN_URL } from "../../../config/url";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 const SignupForm = () => {
   const {
     register,
@@ -18,47 +18,36 @@ const SignupForm = () => {
   const navigate = useNavigate();
   const { user, setUser } = useAuth();
 
-  // const addUser = (ad) => {
-  //   AuthApi.signup(ad);
-  // };
+  const { data, isLoading, error, refetch=(data)=>{} } = useQuery("signup", AuthApi.createBlog, {enabled: false});
 
- 
-  // const { mutate: addBlog } = useMutation(addUser());
-    
 
-  // const onSubmit = (data) => {
-  //   const blog = { data };
-  //   addBlog(blog);
-  // };
-
-  const onSubmit = (data) => {
-    console.log("Invalid data", data);
-    const newUser = data;
+  const onSubmit = (userData) => {
+    const newUser = userData;
     newUser.id = generateId();
+    const newData = refetch(userData);
 
-    AuthApi.signup(newUser).then((result) => {
-      if (result.status === 201) {
-        console.log(result.data);
-        localStorage.setItem("employees_data", JSON.stringify(data));
-        setUser(newUser);
-        navigate(LOGIN_URL);
-        Swal.fire({
-          icon: "success",
-          title: "Added!",
-          text: `${data.name} 's data has been Added.`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        Swal.fire({
-          icon: "failure",
-          title: "Failed!",
-          text: `${data.name} 's data has not been Added.`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
+    console.log("Data ---> ", data);
+    if(data.status === 201){
+      console.log("Data data ---> ", data.data);
+      localStorage.setItem("employees_data", JSON.stringify(data));
+      setUser(newData);
+      navigate(LOGIN_URL);
+      Swal.fire({
+        icon: "success",
+        title: "Added!",
+        text: `${data.name} 's data has been Added.`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }else {
+      Swal.fire({
+        icon: "failure",
+        title: "Failed!",
+        text: `${data.name} 's data has not been Added.`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
 
   return (

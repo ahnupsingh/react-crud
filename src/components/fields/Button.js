@@ -5,7 +5,7 @@ const Button = (props) => {
     props;
   return (
     <button
-      className={className}
+      className={`btn ${className}`}
       type={type}
       {...rest}
     >
