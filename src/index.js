@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Feed from "./views/feed";
 import Login from "./views/auth/Login";
 import Signup from "./views/auth/Signup/index";
-import CreateBlog from "./views/feed/CreateBlog"
 import Dashboard from "./views/dashboard";
 import EmployeeForm from "./views/employees/Form";
 import { Profile } from "./views/employees/Profile";
@@ -41,7 +40,6 @@ root.render(
               <Route path={PROFILE_URL} element={<Profile />} />
               <Route path={LOGIN_URL} element={<Login />} />
               <Route path="/Signup" element={<Signup />} />
-              <Route path="/CreateBlog" element={<CreateBlog />} />
             </Routes>
           </Router>
         </QueryClientProvider>

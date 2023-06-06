@@ -1,40 +1,34 @@
 import axios from "./index";
 import { BASE_URL } from "../config/constants";
 class AuthApi {
+  static login = async (params) => {
+    return axios.get(`/user/`, params);
+  };
 
-    static login = (params) => {
-        return axios.get(`/user/`, params)
+  static signup = async (params) => {
+    try {
+      return await axios.post(`/user/`, params);
+    } catch (e) {
+      console.log("error", e);
+      return false;
     }
+  };
 
-    static signup = (data) => {
-        return axios({
-            method: 'post',
-            url: `${BASE_URL}/user`,
-            data: data
-        })
-    }
+  static getBlog = (blog) => {
+    return axios.get(`${BASE_URL}/blog`, blog);
+  };
 
-    static createBlog = (blog) => {
-        return axios({
-            method: 'post',
-            url: `${BASE_URL}/blog`,
-            data: blog
-        })
-    }
-
-    static getBlog = (blog, page, limit) => {
-        return axios.get(`${BASE_URL}/blog?_page=${page}&_limit=${limit}`, blog)
-    }
-
-    static signin = (data) => {
-        return axios.post(`${base}/auth/signin`,data)
-    }
-    static Register = (data) => {
-        return axios.post(`${base}/register`, data);
-    };
-    static Logout = (data) => {
-        return axios.post(`${base}/logout`, data, { headers: { Authorization: `${data.token}` } });
-    };
+  static signin = (data) => {
+    return axios.post(`${base}/auth/signin`, data);
+  };
+  static Register = (data) => {
+    return axios.post(`${base}/register`, data);
+  };
+  static Logout = (data) => {
+    return axios.post(`${base}/logout`, data, {
+      headers: { Authorization: `${data.token}` },
+    });
+  };
 }
 let base = "users";
 export default AuthApi;
