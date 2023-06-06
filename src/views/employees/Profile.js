@@ -1,23 +1,25 @@
 import "./profile.scss";
-import NavBar from '../../components/Navbar';
+import NavBar from "../../components/Navbar";
 import Logout from "../auth/Logout";
 import { useAuth } from "../../context/AuthProvider";
-import InputField from "../../components/fields/InputField"
+import InputField from "../../components/fields/InputField";
 import ProfileApi from "../../api/profile";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { Input } from "../../components";
+import { classnames } from "../../utils";
 
 export const Profile = () => {
   const { user, setUser } = useAuth();
-  console.log("user", user)
+  console.log("user", user);
   const {
     register,
     handleSubmit,
-    formState: { errors }
-  } = useForm({...user});
+    formState: { errors },
+  } = useForm({ ...user });
 
   const onSubmit = (data) => {
-    console.log('data', data);
+    console.log("data", data);
     ProfileApi.edit(user.id, data).then((result) => {
       if (result.status === 200) {
         localStorage.setItem("profile edit", JSON.stringify(result.data));
@@ -44,92 +46,86 @@ export const Profile = () => {
 
   return (
     <>
-    <NavBar />
-    <div className="container profile-container rounded bg-white mt-5 mb-5">
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="row">
-        <div className="col-md-3 border-right">
-          <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-            <img
-              className="rounded-circle my-5"
-              src={user.profilePhoto != "" ? user.profilePhoto : "https://i.imgur.com/C4egmYM.jpg" }
-            />
-            <span className="font-weight-bold">{user.name}</span>
-            <span className="text-black-50">{user.email}</span>
-            <span className="mt-5"><Logout/></span>
-          </div>
-        </div>
-        <div className="col-md-5 border-right">
-          <div className="p-3 py-5">
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h4 className="text-right">Profile</h4>
-            </div>
-            <div className="row mt-2">
-                <InputField
-                  id = 'name'
-                  label="Name"
-                  placeholder="first name"
-                  type="text"
-                  className="form-contol"
-                  register={register}
-                  validationSchema={{ 
-                    pattern: /^\S+@\S+$/i,
-                    required: "Name is required",
-                  }}
-                  errors={errors}
-                  required
-                ></InputField>
-            </div>
-            <div className="row mt-3">
-              
-              <div className="col-md-12">
-              <InputField
-                  id = 'email'
-                  label="Email"
-                  placeholder="email"
-                  type="text"
-                  className="form-contol"
-                  register={register}
-                  validationSchema={{ 
-                    pattern: /^\S+@\S+$/i,
-                    required: "Email is required",
-                  }}
-                  errors={errors}
-                  required
-                ></InputField>
+      <NavBar />
+      <div className="container profile-container rounded bg-white mt-5 mb-5">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="row">
+            <div className="col-md-3 border-right">
+              <div className="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img
+                  className="rounded-circle my-5"
+                  src={
+                    user.profilePhoto != ""
+                      ? user.profilePhoto
+                      : "https://i.imgur.com/C4egmYM.jpg"
+                  }
+                />
+                <span className="font-weight-bold">{user.name}</span>
+                <span className="text-black-50">{user.email}</span>
+                <span className="mt-5">
+                  <Logout />
+                </span>
               </div>
-              <div className="col-md-12">
-              <InputField
-                  id = 'phone'
-                  label="Phone"
-                  placeholder="phone"
-                  type="text"
-                  className="form-contol"
-                  register={register}
-                  validationSchema={{ 
-                    pattern: /^\S+@\S+$/i,
-                    required: "Phone is required",
-                  }}
-                  errors={errors}
-                  required
-                ></InputField>
+            </div>
+            <div className="col-md-5 border-right">
+              <div className="p-3 py-5">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h4 className="text-right">Profile</h4>
+                </div>
+                <div className="row mt-2">
+                  <Input
+                    id="name"
+                    label="Name"
+                    placeholder="first name"
+                    type="text"
+                    register={register}
+                    validationSchema={{
+                      pattern: /^\S+@\S+$/i,
+                      required: "Name is required",
+                    }}
+                    errors={errors}
+                  />
+                </div>
+                <div className="row mt-3">
+                  <div className="col-md-12">
+                    <Input
+                      id="email"
+                      label="Email"
+                      placeholder="email"
+                      type="email"
+                      register={register}
+                      errors={errors}
+                    />
+                  </div>
+                  <div className="col-md-12">
+                    <Input
+                      id="phone"
+                      label="Phone"
+                      placeholder="phone"
+                      type="text"
+                      register={register}
+                      validationSchema={{
+                        pattern: /^\S+@\S+$/i,
+                        required: "Phone is required",
+                      }}
+                      errors={errors}
+                    />
+                  </div>
+                </div>
+                <div className="row mt-3"></div>
+                <div className="mt-5 text-center">
+                  <button
+                    type="submit"
+                    className="btn btn-primary profile-button"
+                  >
+                    Save Profile
+                  </button>
+                </div>
               </div>
-
-            </div>
-            <div className="row mt-3">
-
-            </div>
-            <div className="mt-5 text-center">
-              <button type="submit" 
-                className="btn btn-primary profile-button">
-                Save Profile
-              </button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
-    </form>
-    </div>
     </>
   );
 };

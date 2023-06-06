@@ -1,7 +1,8 @@
-import {v4 as uuid} from 'uuid';
+import { v4 as uuid } from "uuid";
+import { classnames } from "./classnames";
 
 const generateId = () => {
-    return uuid();
-}
+  return uuid();
+};
 
-export {generateId}
+export { classnames, generateId };

@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import AuthApi from "../../../api/auth";
 import Swal from "sweetalert2";
 import { useAuth } from "../../../context/AuthProvider";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PROFILE_URL } from "../../../config/url";
-import InputField from "../../../components/fields/InputField";
+import { Input } from "../../../components/inputs";
+import { classnames } from "../../../utils";
 import Button from "../../../components/fields/Button";
 
 const LoginForm = () => {
@@ -16,7 +17,7 @@ const LoginForm = () => {
   } = useForm();
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
-
+  console.log(errors);
   // useEffect(() => {
   //   if (user) {
   //     console.log("user", user);
@@ -24,16 +25,14 @@ const LoginForm = () => {
   //   }
   // }, [user]);
 
-
-  
   const onSubmit = (data) => {
     // setUser(data);
     localStorage.setItem("user =---->", JSON.stringify(data));
 
-      // call an API to login
-      // when api gives success response, navigate to root url
-      AuthApi.login(data).then((result) => {
-        console.log("signin -> ", result);
+    // call an API to login
+    // when api gives success response, navigate to root url
+    AuthApi.login(data).then((result) => {
+      console.log("signin -> ", result);
       if (result.status === 200) {
         navigate(PROFILE_URL);
         Swal.fire({
@@ -81,53 +80,48 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
       <div>
-        <InputField
+        <Input
+          className={classnames({ "has-error": !!errors["email"] })}
           id="email"
           type="email"
           register={register}
-          validationSchema={{ 
-            pattern: /^\S+@\S+$/i,
-            required: "Email is required",
-          }}
           placeholder="Email"
           errors={errors}
-          required
         />
       </div>
       <div>
-        <InputField
+        <Input
           id="password"
           type="password"
+          className={classnames({ "has-error": !!errors["password"] })}
           register={register}
-          validationSchema={{ 
+          validationOptions={{
             required: "Password is required",
             minLength: {
-              value: 3,
-              message: "Please enter a minimum of 6 characters"
-            }
+              value: 8,
+              message: "Please enter a minimum of 8 characters",
+            },
           }}
           placeholder="Password"
           errors={errors}
         />
       </div>
       <div className="d-flex custom-control custom-checkbox mb-3">
-        <label className="custom-control-label" for="customCheck1">
+        <label className="custom-control-label" htmlFor="customCheck1">
           Forgot password?
         </label>
       </div>
-      <div style={{display:"flex", gap :"1.5rem"}}>
-
-      <Button
-      className="btn-lg btn-primary btn-block text-uppercase"
-      type="submit"
-      text="SIGN IN"
-      />
-      <Link to="/Signup">
-      <button className="btn btn-lg btn-primary btn-block text-uppercase" >
-        Sign up
-      </button>
-      </Link>
-      
+      <div style={{ display: "flex", gap: "1.5rem" }}>
+        <Button
+          className="btn-lg btn-primary btn-block text-uppercase"
+          type="submit"
+          text="SIGN IN"
+        />
+        <Link to="/Signup">
+          <button className="btn btn-lg btn-primary btn-block text-uppercase">
+            Sign up
+          </button>
+        </Link>
       </div>
       <hr className="my-4" />
       <div className="social-login">
@@ -136,15 +130,13 @@ const LoginForm = () => {
           className="btn btn-lg btn-google btn-block text-uppercase"
           text="Sign in with Google"
           icon="fab fa-google"
-        >
-        </Button>
+        ></Button>
         <Button
           type="submit"
           className="btn btn-lg btn-facebook btn-block text-uppercase"
           text="Sign in with Facebook"
           icon="fab fa-facebook-f"
-        >
-        </Button>
+        ></Button>
       </div>
     </form>
   );

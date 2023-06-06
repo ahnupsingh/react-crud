@@ -11,7 +11,8 @@ const sidebarLinks = [
     { name: 'Notifications', path: '#', icon: 'bx-bell' },
     { name: 'Stats', path: '#', icon: 'bx-pie-chart-alt' },
     { name: 'Favourites', path: '#', icon: 'bx-heart' },
-    { name: "Money", path: "#", icon: "bx-wallet" }
+    { name: "Money", path: "#", icon: "bx-wallet" },
+    { name: "Component", path: "/components", icon: "bx-wallet" }
 ]
 
 export { navLinks, sidebarLinks};
