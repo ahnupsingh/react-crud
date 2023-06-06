@@ -34,16 +34,16 @@ const SignupForm = () => {
         setUser(newUser);
         navigate(LOGIN_URL);
         Swal.fire({
-          icon: "failure",
-          title: "Failed!",
+          icon: "success",
+          title: "Added!",
           text: `${data.name} 's data has not been Added.`,
           showConfirmButton: false,
           timer: 1500,
         });
       } else {
         Swal.fire({
-          icon: "success",
-          title: "Added!",
+          icon: "failure",
+          title: "Failed!",
           text: `${data.name} 's data has been Added.`,
           showConfirmButton: false,
           timer: 1500,
