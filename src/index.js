@@ -21,6 +21,7 @@ import {
   ROOT_URL,
 } from "./config/url";
 import { QueryClient, QueryClientProvider } from "react-query";
+import {ReactQueryDevtools} from 'react-query/devtools';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 let user = localStorage.getItem("user");
@@ -44,6 +45,7 @@ root.render(
               <Route path="/CreateBlog" element={<CreateBlog />} />
             </Routes>
           </Router>
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right"/>
         </QueryClientProvider>
       </React.StrictMode>
     </NavigationProvider>

@@ -22,8 +22,12 @@ class AuthApi {
         })
     }
 
-    static getBlog = (blog, page, limit) => {
-        return axios.get(`${BASE_URL}/blog?_page=${page}&_limit=${limit}`, blog)
+    static getBlog = (params) => {
+        return axios({
+            method: 'get',
+            url: `${BASE_URL}/blog`,
+            params: params
+        })
     }
 
     static signin = (data) => {

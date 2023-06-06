@@ -2,13 +2,58 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/Navbar";
 import AuthApi from "../../api/auth";
 import "./feed.scss";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { Link } from "react-router-dom";
 import Spinner from "../../layouts/Spinner";
 import Alert from "../../layouts/Alert";
+import { PAGE_SIZES } from "../../config/constants";
 
 const Feed = () => {
-  const { data, isLoading, error, refetch } = useQuery("feed", AuthApi.getBlog);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const queryClient = useQueryClient();
+
+  const { data, isLoading, error, refetch } = useQuery("feed", () => AuthApi.getBlog({
+    _page: pageNumber,
+    _limit: pageSize
+  }));
+
+
+  useEffect(() => {
+    // queryClient.invalidateQueries('feed');
+    // console.log("Page Number, page size ---> ", pageNumber, pageSize);
+    refetch(pageNumber, pageSize);
+  }, [pageNumber, pageSize]);
+
+  const handlePageSizeChange = (e) => {
+    setPageSize(Number(e.target.value));
+  };
+
+  const handlePageChange = (e) => {
+    const page = e.target.value ? Number(e.target.value) - 1 : 0;
+    setPageNumber(page);
+  }
+
+  const previousPage = () => {
+    if (pageNumber === 1) {
+      return;
+    }
+    setPageNumber(pageNumber - 1);
+  };
+
+  const nextPage = () => {
+    setPageNumber(pageNumber + 1);
+  };
+
+  const canPreviousPage = () => {
+    return pageNumber > 0;
+  };
+
+  const canNextPage = () => {
+    return true;
+  };
+
+
   if (isLoading) {
     return <Spinner></Spinner>;
   }
@@ -116,10 +161,42 @@ const Feed = () => {
           ))}
 
           <div className="col-12 d-flex align-items-center justify-content-center">
-            <div className="btn btn-primary mb-30">
-              <span>Find More</span>
-              <span className="fas fa-arrow-right"></span>
+            <select
+              value={pageSize}
+              onChange={handlePageSizeChange}
+              className="w-25"
+            >
+              {PAGE_SIZES.map((size) => (
+                <option key={size} value={size}>
+                  Show {size}
+                </option>
+              ))}
+            </select>
+            <div className="d-flex align-items-center">
+              Page&nbsp;
+              <input
+                type="number"
+                value={pageNumber}
+                onChange={handlePageChange}
+                style={{ width: "50px", textAlign: "center" }}
+              />
             </div>
+            <span>
+              <button
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+                className="btn btn-outline-dark m-1"
+              >
+                &lt;
+              </button>
+              <button
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+                className="btn btn-outline-dark m-1"
+              >
+                &gt;
+              </button>
+            </span>
           </div>
         </div>
       </div>
