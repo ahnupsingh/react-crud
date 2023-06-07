@@ -3,11 +3,9 @@ import { useForm } from "react-hook-form";
 import AuthApi from "../../../api/auth";
 import Swal from "sweetalert2";
 import { generateId } from "../../../utils";
-import { useAuth } from "../../../context/AuthProvider";
-import InputField from "../../../components/fields/InputField";
 import { useNavigate } from "react-router-dom";
-import { ROOT_URL, LOGIN_URL } from "../../../config/url";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { LOGIN_URL } from "../../../config/url";
+import "./sign.css";
 const SignupForm = () => {
   const {
     register,
@@ -16,43 +14,46 @@ const SignupForm = () => {
   } = useForm();
 
   const navigate = useNavigate();
-  const { user, setUser } = useAuth();
-
-  const queryClient = useQueryClient();
-
-  const { mutate, isLoading } = useMutation(AuthApi.createBlog, {
-    onSuccess: data => {
-      const newUser = data.data;
-      newUser.id = generateId();
-      console.log("Data data ---> ", newUser);
-      localStorage.setItem("employees_data", JSON.stringify(newUser));
-      setUser(newUser);
-      navigate(LOGIN_URL);
-      Swal.fire({
-        icon: "success",
-        title: "Added!",
-        text: `${newUser.name} 's data has been Added.`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    },
-    onError: () => {
-      alert("there was an error")
-      Swal.fire({
-        icon: "failure",
-        title: "Failed!",
-        text: `Data has not been Added.`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries('employees');
-    }
+  const [user, setUser] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    password: "",
+    profilePhoto: "",
   });
 
+  const onSubmit = (data) => {
+    console.log("Invalid data", data);
+    const newUser = data;
+    newUser.id = generateId();
+
+    AuthApi.signup(newUser).then((result) => {
+      console.log(result);
+      if (result.status === 201) {
+        localStorage.setItem("employees_data", JSON.stringify(data));
+        setUser(newUser);
+        navigate(LOGIN_URL);
+        Swal.fire({
+          icon: "success",
+          title: "Added!",
+          text: `${data.name} 's data has not been Added.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          icon: "failure",
+          title: "Failed!",
+          text: `${data.name} 's data has been Added.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
   return (
-    <form onSubmit={handleSubmit(mutate)} className="form-signin">
+    <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
       <div>
         <label>Name:</label>
         <input
@@ -60,7 +61,7 @@ const SignupForm = () => {
           {...register("name", { required: true })}
           placeholder="Name"
         />
-        {errors.name && <span style={{ color: "red" }}>Required*</span>}
+        {errors.name && <span>Do not forget to fill Your Name*</span>}
       </div>
       <div>
         <label>Phone Number:</label>
@@ -69,7 +70,9 @@ const SignupForm = () => {
           {...register("phone", { required: true })}
           placeholder="Phone Number"
         />
-        {errors.phone && <span style={{ color: "red" }}>Required*</span>}
+        {errors.phone && (
+          <span>Do not forget to fill your contact number*</span>
+        )}
       </div>
       <div>
         <label>E-mail:</label>
@@ -79,9 +82,9 @@ const SignupForm = () => {
           placeholder="Email"
         />
         {errors.email && (
-          <span style={{ color: "red" }}>
+          <span>
             {errors.email.type === "required"
-              ? "This field is required*"
+              ? "Do Not Forget to Fill Your Email*"
               : "Invalid email address*"}
           </span>
         )}
@@ -93,20 +96,15 @@ const SignupForm = () => {
           {...register("password", { required: true })}
           placeholder="Password"
         />
-        {errors.password && <span style={{ color: "red" }}>Required*</span>}
+        {errors.password && <span>Do not forget to fill your Password*</span>}
       </div>
       <div>
         <label>Profile Photo:</label>
-        <input
-          type="file"
-          {...register("profilePhoto", { required: true })}
-          placeholder="Password"
-        />
-        {errors.profilePhoto && <span style={{ color: "red" }}>Required*</span>}
+        <input type="file" placeholder="Password" />
       </div>
       <br />
       <button
-        className="btn btn-lg btn-primary btn-block text-uppercase"
+        className="btn btn-lg btn-primary btn-block text-uppercase text-center"
         type="submit"
       >
         Submit

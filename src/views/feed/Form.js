@@ -7,7 +7,7 @@ import { generateId } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import { FEED_URL } from "../../config/url";
 
-const BlogForm = () => {
+const Cartname = () => {
   const {
     register,
     handleSubmit,
@@ -15,7 +15,7 @@ const BlogForm = () => {
   } = useForm();
 
   const navigate = useNavigate();
- 
+
   const { user, setUser } = useAuth();
 
   const onSubmit = (data) => {
@@ -23,9 +23,9 @@ const BlogForm = () => {
     const newBlog = data;
     newBlog.id = generateId();
 
-    AuthApi.createBlog(newBlog).then((result) => {
+    AuthApi.cartBlog(newBlog).then((result) => {
+      console.log(result);
       if (result.status === 201) {
-        console.log(result.data);
         localStorage.setItem("employees_data", JSON.stringify(data));
         setUser(newBlog);
         navigate(FEED_URL);
@@ -55,18 +55,18 @@ const BlogForm = () => {
         <input
           type="text"
           {...register("title", { required: true })}
-          placeholder="Title"
+          placeholder="Enter Title"
         />
-        {errors.title && <span style={{ color: "red" }}>Required*</span>}
+        {errors.title && <span>Title is mandatory field*</span>}
       </div>
       <div>
         <label>Description:</label>
         <input
           type="text"
           {...register("description", { required: true })}
-          placeholder="Description"
+          placeholder="Enter Description"
         />
-        {errors.description && <span style={{ color: "red" }}>Required*</span>}
+        {errors.description && <span>Description is mandatory field*</span>}
       </div>
       <div>
         <label>Address:</label>
@@ -75,35 +75,23 @@ const BlogForm = () => {
           {...register("location", { required: true })}
           placeholder="Address"
         />
-        {errors.location && <span style={{ color: "red" }}>Required*</span>}
+        {errors.location && <span>Address is mandatory field*</span>}
       </div>
+
       <div>
-        <label>Work Type:</label>
-        <input
-          type="text"
-          {...register("workType", { required: true })}
-          placeholder="Work Type(Full-Time / Part- Time)"
-        />
-        {errors.workType && <span style={{ color: "red" }}>Required*</span>}
-      </div>
-      <div>
-        <label>Created At:</label>
-        <input
-          type="time"
-          {...register("createdAt", { required: true })}
-          placeholder="Created At"
-        />
-        {errors.createdAt && <span style={{ color: "red" }}>Required*</span>}
+        <label>Choose Date:</label>
+        <input type="date" {...register("chooseDate", { required: true })} />
+        {errors.chooseDate && <span>Choose The Date*</span>}
       </div>
       <br />
       <button
         className="btn btn-lg btn-primary btn-block text-uppercase"
         type="submit"
       >
-        Submit
+        Add Cart
       </button>
     </form>
   );
 };
 
-export default BlogForm;
+export default Cartname;

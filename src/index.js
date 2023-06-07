@@ -6,11 +6,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Feed from "./views/feed";
 import Login from "./views/auth/Login";
 import Signup from "./views/auth/Signup/index";
-import CreateBlog from "./views/feed/CreateBlog"
 import Dashboard from "./views/dashboard";
 import EmployeeForm from "./views/employees/Form";
 import { Profile } from "./views/employees/Profile";
 import { AuthProvider } from "./context/AuthProvider";
+import CartBlogs from "./views/feed/CartBlogs";
 import { NavigationProvider } from "./context/NavigationProvider";
 import {
   EMPLOYEE_FORM,
@@ -41,7 +41,7 @@ root.render(
               <Route path={PROFILE_URL} element={<Profile />} />
               <Route path={LOGIN_URL} element={<Login />} />
               <Route path="/Signup" element={<Signup />} />
-              <Route path="/CreateBlog" element={<CreateBlog />} />
+              <Route path="/CartBlogs" element={<CartBlogs />} />
             </Routes>
           </Router>
         </QueryClientProvider>
