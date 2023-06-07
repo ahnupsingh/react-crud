@@ -77,7 +77,7 @@ const Feed = () => {
           </div>
         </nav>
         <div className="f-right m-all-1rem">
-          <Link to="/CreateBlog">
+          <Link to="/CartBlogs">
             <button>Create Blog</button>
           </Link>
         </div>
@@ -108,7 +108,7 @@ const Feed = () => {
                     <div className="left">
                       <p></p>
                     </div>
-                    <span className="time">{feed.createdAt}</span>
+                    <span className="time">{feed.chooseDate}</span>
                   </div>
                 </div>
               </div>

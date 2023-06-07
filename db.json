@@ -77,6 +77,20 @@
       "email": "rohit@gmail.com",
       "password": "123456",
       "id": "c1af3dd5-57b3-4305-af49-9a0da01c1fc0"
+    },
+    {
+      "name": "king",
+      "phone": "1111111111",
+      "email": "king@gmail.com",
+      "password": "123456",
+      "id": "ba3e5dc8-95eb-4de9-99b0-f51bcd46e548"
+    },
+    {
+      "name": "Rohit ",
+      "phone": "1111111111",
+      "email": "rohit@gmail.com",
+      "password": "123456",
+      "id": "44c65ece-92b9-4495-b4a9-55c65824ca58"
     }
   ],
   "blog": [
@@ -98,44 +112,11 @@
       "id": "047d6e54-4d0e-4c00-a895-9036f522c7ce"
     },
     {
-      "title": "Medical",
-      "description": "Medical Science",
-      "location": "India",
-      "workType": "Part Time",
-      "createdAt": "09:16",
-      "id": "327198a3-088d-47c5-a536-5a708a6d04cf"
-    },
-    {
-      "title": "Marketing",
-      "description": "Markeing experience",
-      "location": "Norway",
-      "workType": "Full Time",
-      "createdAt": "21:17",
-      "id": "27f45704-b9aa-464b-911a-e0170d2045cb"
-    },
-    {
-      "title": "sports",
-      "description": "cricket",
-      "location": "Banglore ",
-      "workType": "Full Time",
-      "createdAt": "20:49",
-      "id": "a4d03cfb-b51e-4287-aebc-f9f956adf8f1"
-    },
-    {
-      "title": "Java Developer",
-      "description": "FullStack Java Developer",
-      "location": "INdia",
-      "workType": "Full Time",
-      "createdAt": "07:32",
-      "id": "e41fbadc-7fef-4c18-bd1c-cfef262cfc74"
-    },
-    {
-      "title": "Sports",
-      "description": "Football",
-      "location": "India",
-      "workType": "Full Time",
-      "createdAt": "16:06",
-      "id": "14a3f625-9386-4e78-a200-9f2ac9973afe"
+      "title": "Rohit Kumar",
+      "description": "Any Things",
+      "location": "BKT",
+      "chooseDate": "2023-06-09",
+      "id": "3b16933e-c1a9-4e86-8238-78c57f51b5f2"
     }
   ],
   "employees": [
@@ -238,6 +219,16 @@
       "description": "this",
       "_id": "110fe202-129b-4840-a37b-65bdfb3c2cf4",
       "id": "6HdyVz1"
+    },
+    {
+      "title": "Any",
+      "lastName": "dfsdkj",
+      "email": "rohit@gmail.com",
+      "salary": "2345",
+      "description": "errref",
+      "firstName": "json",
+      "_id": "db39ce26-90be-4ed0-8277-e15d6c37c834",
+      "id": "snu9sU2"
     }
   ],
   "states": [
