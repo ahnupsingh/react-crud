@@ -1,4 +1,6 @@
-export default ({id, label, value, onChange, className, options, ...rest})=> {
+const selectFields = function (){}
+
+export default selectFields(({id, label, value, onChange, className, options, ...rest}) => {
     return (
         <>
             {label && <label htmlFor={id}>{label}</label>}
@@ -17,4 +19,4 @@ export default ({id, label, value, onChange, className, options, ...rest})=> {
             </select>
         </>
     )
-}
+})
